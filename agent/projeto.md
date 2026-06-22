@@ -216,6 +216,58 @@ Validações executadas:
 - `npm.cmd run lint`
 - `npm.cmd run build`
 
+## Remoção do Cabeçalho da Lista de Gastos - 22/06/2026
+
+Alterações realizadas:
+
+- Removida a faixa com `Histórico completo`, `Gastos cadastrados` e contador.
+- A lista de gastos agora inicia diretamente pelos cabeçalhos ordenáveis.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Remoção dos Ícones de Ordenação - 22/06/2026
+
+Alterações realizadas:
+
+- Removida também a seta da coluna ativa da tabela de gastos.
+- A coluna que ordena a lista agora é indicada apenas pelo texto em azul.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Ajuste Visual da Ordenação - 22/06/2026
+
+Alterações realizadas:
+
+- Ícones removidos das colunas que não estão ordenando a lista.
+- Coluna ativa passa a ficar em azul.
+- Seta mantida apenas na coluna ativa para indicar a direção da ordenação.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Ordenação do Histórico de Gastos - 22/06/2026
+
+Alterações realizadas:
+
+- Cabeçalhos `Data`, `Categoria`, `Descrição` e `Valor` transformados em botões
+  de ordenação.
+- Clique em uma coluna ordena a lista; novo clique na mesma coluna inverte a
+  direção.
+- Adicionado indicador visual de ordenação nos cabeçalhos da tabela.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
 ## Ajuste do Botão de Cadastro - 22/06/2026
 
 Alterações realizadas:

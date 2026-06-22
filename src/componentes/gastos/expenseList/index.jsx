@@ -1,9 +1,90 @@
 import { Pencil, ReceiptText, Trash2 } from 'lucide-react'
+import { useMemo, useState } from 'react'
 import { formatDate } from '../../../utils/dateUtils'
 import { formatCurrency } from '../../../utils/formatCurrency'
 import './styles.css'
 
+const SORT_COLUMNS = [
+  {
+    key: 'date',
+    label: 'Data',
+    defaultDirection: 'desc',
+    getValue: (expense) => expense.date,
+  },
+  {
+    key: 'category',
+    label: 'Categoria',
+    defaultDirection: 'asc',
+    getValue: (expense) => expense.category.nome,
+  },
+  {
+    key: 'description',
+    label: 'Descrição',
+    defaultDirection: 'asc',
+    getValue: (expense) => expense.description || '',
+  },
+  {
+    key: 'value',
+    label: 'Valor',
+    defaultDirection: 'desc',
+    getValue: (expense) => expense.value,
+  },
+]
+
+function compareValues(a, b, direction) {
+  const multiplier = direction === 'asc' ? 1 : -1
+
+  if (typeof a === 'number' && typeof b === 'number') {
+    return (a - b) * multiplier
+  }
+
+  return String(a).localeCompare(String(b), 'pt-BR', { numeric: true }) * multiplier
+}
+
 function ExpenseList({ expenses, onDeleteExpense, onEditExpense }) {
+  const [sortConfig, setSortConfig] = useState({
+    key: 'date',
+    direction: 'desc',
+  })
+
+  const sortedExpenses = useMemo(() => {
+    const column = SORT_COLUMNS.find((item) => item.key === sortConfig.key)
+
+    if (!column) {
+      return expenses
+    }
+
+    return [...expenses].sort((a, b) => {
+      const valueDiff = compareValues(
+        column.getValue(a),
+        column.getValue(b),
+        sortConfig.direction,
+      )
+
+      if (valueDiff !== 0) {
+        return valueDiff
+      }
+
+      return String(b.createdAt).localeCompare(String(a.createdAt))
+    })
+  }, [expenses, sortConfig])
+
+  function handleSort(column) {
+    setSortConfig((currentConfig) => {
+      if (currentConfig.key !== column.key) {
+        return {
+          key: column.key,
+          direction: column.defaultDirection,
+        }
+      }
+
+      return {
+        key: column.key,
+        direction: currentConfig.direction === 'asc' ? 'desc' : 'asc',
+      }
+    })
+  }
+
   function handleDelete(expense) {
     const confirmed = window.confirm('Excluir este gasto?')
 
@@ -25,27 +106,39 @@ function ExpenseList({ expenses, onDeleteExpense, onEditExpense }) {
 
   return (
     <section className="expense-list">
-      <div className="expense-list__header">
-        <div>
-          <span>Histórico completo</span>
-          <h2>Gastos cadastrados</h2>
-        </div>
-        <strong>{expenses.length}</strong>
-      </div>
-
       <div className="expense-list__table-wrap">
         <table className="expense-list__table">
           <thead>
             <tr>
-              <th>Data</th>
-              <th>Categoria</th>
-              <th>Descrição</th>
-              <th>Valor</th>
+              {SORT_COLUMNS.map((column) => (
+                <th
+                  key={column.key}
+                  aria-sort={
+                    sortConfig.key === column.key
+                      ? sortConfig.direction === 'asc'
+                        ? 'ascending'
+                        : 'descending'
+                      : 'none'
+                  }
+                >
+                  <button
+                    className={
+                      sortConfig.key === column.key
+                        ? 'expense-list__sort-button is-active'
+                        : 'expense-list__sort-button'
+                    }
+                    type="button"
+                    onClick={() => handleSort(column)}
+                  >
+                    {column.label}
+                  </button>
+                </th>
+              ))}
               <th aria-label="Ações" />
             </tr>
           </thead>
           <tbody>
-            {expenses.map((expense) => (
+            {sortedExpenses.map((expense) => (
               <tr key={expense.id}>
                 <td>{formatDate(expense.date)}</td>
                 <td>
