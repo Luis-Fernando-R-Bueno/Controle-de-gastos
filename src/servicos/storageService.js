@@ -1,7 +1,10 @@
 const STORAGE_KEYS = {
   categories: 'controle-gastos:categories',
+  categoryDefaultsVersion: 'controle-gastos:category-defaults-version',
   expenses: 'controle-gastos:expenses',
 }
+
+const CATEGORY_DEFAULTS_VERSION = 2
 
 export const CATEGORY_COLORS = [
   '#2563eb',
@@ -13,6 +16,7 @@ export const CATEGORY_COLORS = [
   '#ea580c',
   '#475569',
   '#16a34a',
+  '#db2777',
 ]
 
 export const DEFAULT_CATEGORIES = [
@@ -25,6 +29,7 @@ export const DEFAULT_CATEGORIES = [
   'Presentes',
   'Itens',
   'Outros',
+  'Estética',
 ].map((name, index) => ({
   id: `categoria-${index + 1}`,
   nome: name,
@@ -56,20 +61,54 @@ function normalizeCategoryName(name) {
   return names[name] ?? name
 }
 
+function normalizeCategoryKey(name) {
+  return String(name)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+}
+
+function applyCategoryDefaultMigrations(categories) {
+  const currentVersion = Number(readStorage(STORAGE_KEYS.categoryDefaultsVersion, 0)) || 0
+
+  if (currentVersion >= CATEGORY_DEFAULTS_VERSION) {
+    return categories
+  }
+
+  const existingNames = new Set(
+    categories.map((category) => normalizeCategoryKey(category.nome)),
+  )
+  const existingIds = new Set(categories.map((category) => category.id))
+  const categoriesToAdd = DEFAULT_CATEGORIES.filter(
+    (category) =>
+      category.nome === 'Estética' && !existingNames.has(normalizeCategoryKey(category.nome)),
+  ).map((category) => ({
+    ...category,
+    id: existingIds.has(category.id) ? 'categoria-padrao-estetica' : category.id,
+    createdAt: new Date().toISOString(),
+  }))
+
+  writeStorage(STORAGE_KEYS.categoryDefaultsVersion, CATEGORY_DEFAULTS_VERSION)
+  return [...categories, ...categoriesToAdd]
+}
+
 export function loadCategories() {
   const storedCategories = readStorage(STORAGE_KEYS.categories, DEFAULT_CATEGORIES)
 
   if (!Array.isArray(storedCategories) || storedCategories.length === 0) {
+    writeStorage(STORAGE_KEYS.categoryDefaultsVersion, CATEGORY_DEFAULTS_VERSION)
     return DEFAULT_CATEGORIES
   }
 
-  return storedCategories.map((category, index) => ({
+  const categories = storedCategories.map((category, index) => ({
     id: category.id ?? `categoria-${index + 1}`,
     nome: normalizeCategoryName(category.nome ?? 'Categoria'),
     cor: category.cor ?? CATEGORY_COLORS[index % CATEGORY_COLORS.length],
     ativa: category.ativa !== false,
     createdAt: category.createdAt ?? new Date().toISOString(),
   }))
+
+  return applyCategoryDefaultMigrations(categories)
 }
 
 export function saveCategories(categories) {

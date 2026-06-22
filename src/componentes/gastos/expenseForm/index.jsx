@@ -1,6 +1,7 @@
 import { Plus, Save, X } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import CalendarField from '../../compartilhado/calendarField'
+import { isCreditCardCategory, sortCategoriesByName } from '../../../utils/categoryUtils'
 import { toInputDate } from '../../../utils/dateUtils'
 import './styles.css'
 
@@ -31,16 +32,24 @@ function ExpenseForm({
   onUpdateExpense,
 }) {
   const firstInputRef = useRef(null)
-  const initialCategoryId = useMemo(
-    () => categories.find((category) => category.ativa)?.id ?? categories[0]?.id ?? '',
-    [categories],
-  )
+  const initialCategoryId = useMemo(() => {
+    const activeCategories = categories.filter((category) => category.ativa)
+    const creditCardCategory = activeCategories.find(isCreditCardCategory)
+
+    return creditCardCategory?.id ?? activeCategories[0]?.id ?? categories[0]?.id ?? ''
+  }, [categories])
   const [formData, setFormData] = useState(() =>
     getInitialFormData(editingExpense, initialCategoryId),
   )
 
-  const availableCategories = categories.filter(
-    (category) => category.ativa || category.id === formData.categoryId,
+  const availableCategories = useMemo(
+    () =>
+      sortCategoriesByName(
+        categories.filter(
+          (category) => category.ativa || category.id === formData.categoryId,
+        ),
+      ),
+    [categories, formData.categoryId],
   )
   const isEditing = Boolean(editingExpense)
 

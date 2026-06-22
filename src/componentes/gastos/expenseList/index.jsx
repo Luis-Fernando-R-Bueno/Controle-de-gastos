@@ -1,5 +1,6 @@
 import { Pencil, ReceiptText, Trash2 } from 'lucide-react'
 import { useMemo, useState } from 'react'
+import ConfirmDialog from '../../compartilhado/confirmDialog'
 import { formatDate } from '../../../utils/dateUtils'
 import { formatCurrency } from '../../../utils/formatCurrency'
 import './styles.css'
@@ -42,6 +43,7 @@ function compareValues(a, b, direction) {
 }
 
 function ExpenseList({ expenses, onDeleteExpense, onEditExpense }) {
+  const [pendingDeleteExpense, setPendingDeleteExpense] = useState(null)
   const [sortConfig, setSortConfig] = useState({
     key: 'date',
     direction: 'desc',
@@ -86,11 +88,15 @@ function ExpenseList({ expenses, onDeleteExpense, onEditExpense }) {
   }
 
   function handleDelete(expense) {
-    const confirmed = window.confirm('Excluir este gasto?')
+    setPendingDeleteExpense(expense)
+  }
 
-    if (confirmed) {
-      onDeleteExpense(expense.id)
+  function confirmDeleteExpense() {
+    if (pendingDeleteExpense) {
+      onDeleteExpense(pendingDeleteExpense.id)
     }
+
+    setPendingDeleteExpense(null)
   }
 
   if (expenses.length === 0) {
@@ -105,82 +111,93 @@ function ExpenseList({ expenses, onDeleteExpense, onEditExpense }) {
   }
 
   return (
-    <section className="expense-list">
-      <div className="expense-list__table-wrap">
-        <table className="expense-list__table">
-          <thead>
-            <tr>
-              {SORT_COLUMNS.map((column) => (
-                <th
-                  key={column.key}
-                  aria-sort={
-                    sortConfig.key === column.key
-                      ? sortConfig.direction === 'asc'
-                        ? 'ascending'
-                        : 'descending'
-                      : 'none'
-                  }
-                >
-                  <button
-                    className={
+    <>
+      <section className="expense-list">
+        <div className="expense-list__table-wrap">
+          <table className="expense-list__table">
+            <thead>
+              <tr>
+                {SORT_COLUMNS.map((column) => (
+                  <th
+                    key={column.key}
+                    aria-sort={
                       sortConfig.key === column.key
-                        ? 'expense-list__sort-button is-active'
-                        : 'expense-list__sort-button'
+                        ? sortConfig.direction === 'asc'
+                          ? 'ascending'
+                          : 'descending'
+                        : 'none'
                     }
-                    type="button"
-                    onClick={() => handleSort(column)}
                   >
-                    {column.label}
-                  </button>
-                </th>
-              ))}
-              <th aria-label="Ações" />
-            </tr>
-          </thead>
-          <tbody>
-            {sortedExpenses.map((expense) => (
-              <tr key={expense.id}>
-                <td>{formatDate(expense.date)}</td>
-                <td>
-                  <span
-                    className="expense-list__badge"
-                    style={{ '--category-color': expense.category.cor }}
-                  >
-                    {expense.category.nome}
-                  </span>
-                </td>
-                <td>{expense.description || '-'}</td>
-                <td>
-                  <strong>{formatCurrency(expense.value)}</strong>
-                </td>
-                <td>
-                  <div className="expense-list__actions">
                     <button
-                      className="icon-button"
+                      className={
+                        sortConfig.key === column.key
+                          ? 'expense-list__sort-button is-active'
+                          : 'expense-list__sort-button'
+                      }
                       type="button"
-                      title="Editar gasto"
-                      aria-label="Editar gasto"
-                      onClick={() => onEditExpense(expense)}
+                      onClick={() => handleSort(column)}
                     >
-                      <Pencil size={17} aria-hidden="true" />
+                      {column.label}
                     </button>
-                    <button
-                      className="icon-button icon-button--danger"
-                      type="button"
-                      title="Excluir gasto"
-                      aria-label="Excluir gasto"
-                      onClick={() => handleDelete(expense)}
-                    >
-                      <Trash2 size={17} aria-hidden="true" />
-                    </button>
-                  </div>
-                </td>
+                  </th>
+                ))}
+                <th aria-label="Ações" />
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </section>
+            </thead>
+            <tbody>
+              {sortedExpenses.map((expense) => (
+                <tr key={expense.id}>
+                  <td>{formatDate(expense.date)}</td>
+                  <td>
+                    <span
+                      className="expense-list__badge"
+                      style={{ '--category-color': expense.category.cor }}
+                    >
+                      {expense.category.nome}
+                    </span>
+                  </td>
+                  <td>{expense.description || '-'}</td>
+                  <td>
+                    <strong>{formatCurrency(expense.value)}</strong>
+                  </td>
+                  <td>
+                    <div className="expense-list__actions">
+                      <button
+                        className="icon-button"
+                        type="button"
+                        title="Editar gasto"
+                        aria-label="Editar gasto"
+                        onClick={() => onEditExpense(expense)}
+                      >
+                        <Pencil size={17} aria-hidden="true" />
+                      </button>
+                      <button
+                        className="icon-button icon-button--danger"
+                        type="button"
+                        title="Excluir gasto"
+                        aria-label="Excluir gasto"
+                        onClick={() => handleDelete(expense)}
+                      >
+                        <Trash2 size={17} aria-hidden="true" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <ConfirmDialog
+        confirmLabel="Excluir"
+        isOpen={Boolean(pendingDeleteExpense)}
+        message="Esta ação removerá o gasto do histórico e atualizará o dashboard."
+        title="Excluir gasto?"
+        onCancel={() => setPendingDeleteExpense(null)}
+        onConfirm={confirmDeleteExpense}
+      />
+    </>
   )
 }
 

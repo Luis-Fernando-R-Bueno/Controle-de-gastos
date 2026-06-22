@@ -216,6 +216,65 @@ Validações executadas:
 - `npm.cmd run lint`
 - `npm.cmd run build`
 
+## Ordenação dos Selects de Categoria - 22/06/2026
+
+Alterações realizadas:
+
+- Select de categoria do cadastro passa a exibir opções em ordem alfabética.
+- Select de categoria dos filtros também segue a mesma ordenação.
+- Categoria `Outros` permanece sempre como última opção.
+- `Cartão de Crédito` segue como seleção padrão do cadastro quando está ativa,
+  mas aparece na posição alfabética dentro da lista.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Ordenação da Lista de Categorias - 22/06/2026
+
+Alterações realizadas:
+
+- Lista de categorias exibida em ordem alfabética.
+- Categoria `Outros` permanece sempre como última opção da lista.
+- Ordenação aplicada apenas na exibição, sem alterar a estrutura salva no
+  `localStorage`.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Nova Categoria Padrão - 22/06/2026
+
+Alterações realizadas:
+
+- Adicionada a categoria padrão `Estética`.
+- Criada migração local para adicionar `Estética` também em navegadores que já
+  possuem categorias salvas no `localStorage`.
+- A migração é versionada para não recriar a categoria caso o usuário remova
+  depois.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Modais de Confirmação do Sistema - 22/06/2026
+
+Alterações realizadas:
+
+- Confirmações nativas do navegador removidas das ações de exclusão.
+- Criado modal visual próprio do sistema para confirmar exclusão de gastos.
+- Criado modal visual próprio do sistema para confirmar exclusão ou inativação
+  de categorias.
+- Nenhum `window.confirm` permanece no código da aplicação.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
 ## Ajuste de Espaçamento do Seletor do Dashboard - 22/06/2026
 
 Alterações realizadas:

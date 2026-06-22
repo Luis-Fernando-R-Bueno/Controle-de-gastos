@@ -1,9 +1,13 @@
 import { RotateCcw } from 'lucide-react'
+import { useMemo } from 'react'
 import { MonthField } from '../../compartilhado/calendarField'
 import SearchBar from '../../compartilhado/searchBar'
+import { sortCategoriesByName } from '../../../utils/categoryUtils'
 import './styles.css'
 
 function ExpenseFilters({ categories, filters, onChange, onClear }) {
+  const sortedCategories = useMemo(() => sortCategoriesByName(categories), [categories])
+
   return (
     <section className="expense-filters" aria-label="Filtros de gastos">
       <SearchBar value={filters.search} onChange={(value) => onChange('search', value)} />
@@ -15,7 +19,7 @@ function ExpenseFilters({ categories, filters, onChange, onClear }) {
           onChange={(event) => onChange('categoryId', event.target.value)}
         >
           <option value="todos">Todas</option>
-          {categories.map((category) => (
+          {sortedCategories.map((category) => (
             <option key={category.id} value={category.id}>
               {category.nome}
             </option>
