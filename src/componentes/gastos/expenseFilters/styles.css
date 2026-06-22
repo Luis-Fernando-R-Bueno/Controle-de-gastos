@@ -1,0 +1,54 @@
+.expense-filters {
+  display: grid;
+  grid-template-columns: minmax(360px, 1.2fr) minmax(160px, 220px) minmax(128px, 150px) auto;
+  align-items: end;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.expense-filters label {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  text-align: left;
+}
+
+.expense-filters label span {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.expense-filters select {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  outline: 0;
+  padding: 0 12px;
+}
+
+.expense-filters select:focus {
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+@media (max-width: 1060px) {
+  .expense-filters {
+    grid-template-columns: minmax(300px, 1fr) minmax(160px, 220px);
+  }
+}
+
+@media (max-width: 620px) {
+  .expense-filters {
+    grid-template-columns: 1fr;
+  }
+}

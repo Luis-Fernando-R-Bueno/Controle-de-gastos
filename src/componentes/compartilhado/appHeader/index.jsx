@@ -1,0 +1,42 @@
+import { LayoutDashboard, ReceiptText, Tags } from 'lucide-react'
+import './styles.css'
+
+const NAV_ITEMS = [
+  {
+    id: 'dashboard',
+    label: 'Dashboard',
+    Icon: LayoutDashboard,
+  },
+  {
+    id: 'gastos',
+    label: 'Gastos',
+    Icon: ReceiptText,
+  },
+  {
+    id: 'categorias',
+    label: 'Categorias',
+    Icon: Tags,
+  },
+]
+
+function AppHeader({ activeView, onChangeView }) {
+  return (
+    <header className="app-header">
+      <nav className="app-header__nav" aria-label="Navegação principal">
+        {NAV_ITEMS.map(({ id, label, Icon }) => (
+          <button
+            key={id}
+            className={activeView === id ? 'app-header__tab is-active' : 'app-header__tab'}
+            type="button"
+            onClick={() => onChangeView(id)}
+          >
+            <Icon size={18} aria-hidden="true" />
+            {label}
+          </button>
+        ))}
+      </nav>
+    </header>
+  )
+}
+
+export default AppHeader

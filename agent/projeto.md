@@ -191,3 +191,153 @@ Depois, o projeto pode evoluir para:
 - Banco de dados MySQL ou PostgreSQL.
 - Relatórios exportáveis.
 - Dashboard com gráficos mais completos.
+
+## Status da Implementação - 22/06/2026
+
+MVP inicial implementado em React + Vite, substituindo a tela padrão do Vite por
+um sistema de controle de gastos pessoais.
+
+Entregas realizadas:
+
+- Dashboard mensal com total do mês, quantidade de lançamentos, maior categoria,
+  média por gasto, gastos recentes, resumo por categoria e resumo por mês.
+- Cadastro, edição e exclusão de gastos com persistência em `localStorage`.
+- Histórico completo com pesquisa dinâmica por descrição, categoria ou valor.
+- Filtros por categoria e por mês/ano.
+- Gerenciamento de categorias com criação, edição, ativação, inativação e
+  remoção quando a categoria não possui gastos vinculados.
+- Categorias iniciais configuradas conforme a proposta do MVP.
+- Estrutura organizada em `componentes`, `telas`, `hooks`, `servicos` e `utils`.
+- Estilos responsivos e interface com aparência de sistema financeiro pessoal.
+- Pacote `lucide-react` instalado para ícones da interface.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Ajuste do Botão de Cadastro - 22/06/2026
+
+Alterações realizadas:
+
+- Botão `Cadastrar gasto` ajustado para ocupar a largura disponível do formulário,
+  seguindo o padrão visual do botão `Adicionar` na tela de categorias.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Ajuste de Colunas Entre Telas - 22/06/2026
+
+Verificação realizada:
+
+- As telas `Gastos` e `Categorias` usam a mesma regra de colunas no desktop:
+  `minmax(300px, 420px) minmax(0, 1fr)`.
+- O breakpoint responsivo foi igualado para `1020px` nas duas telas, garantindo
+  que ambas mudem para uma coluna no mesmo tamanho de viewport.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Ajuste do Cabeçalho do Formulário - 22/06/2026
+
+Alterações realizadas:
+
+- Removido o rótulo `Cadastro` acima do título `Novo gasto`.
+- Formulário mantém apenas o título principal no cabeçalho.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Ajuste do Cabeçalho de Categorias - 22/06/2026
+
+Alterações realizadas:
+
+- Removido o texto acima do título `Categorias`.
+- Removido o ícone do cabeçalho do painel de categorias.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Ajuste do Campo de Pesquisa - 22/06/2026
+
+Alterações realizadas:
+
+- Adicionado o rótulo `Pesquisa` acima do campo, seguindo o padrão visual de
+  `Categoria` e `Mês`.
+- Adicionado placeholder curto e útil: `Descrição, categoria ou valor`.
+- Mantido o ícone de pesquisa alinhado à direita dentro do campo.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Ajuste da Barra de Pesquisa - 22/06/2026
+
+Alterações realizadas:
+
+- Placeholder da barra de pesquisa removido.
+- Ícone de pesquisa corrigido para permanecer alinhado à direita do campo.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Ajuste de Filtros, Calendário e Textos - 22/06/2026
+
+Alterações realizadas:
+
+- Ícone da barra de pesquisa movido para a lateral direita.
+- Placeholder da pesquisa ajustado para exibir a informação completa.
+- Campo de mês substituído por um seletor compacto e estilizado.
+- Campo de data substituído por um calendário próprio estilizado.
+- Textos visíveis revisados com acentuação correta em português.
+- Categorias padrão antigas salvas sem acento passam a ser exibidas com acento.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Ajuste de Menu e Dashboard - 22/06/2026
+
+Alterações realizadas:
+
+- Menu principal centralizado no topo e com mais destaque visual.
+- Botão `Novo gasto` removido do menu.
+- Formulário de cadastro de novo gasto removido do dashboard.
+- Cadastro de gastos mantido apenas na tela `Gastos`.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+Servidor local iniciado para teste:
+
+- `http://127.0.0.1:5173`
+
+## Ajuste de Interface - 22/06/2026
+
+Removidas as informações textuais do topo solicitadas pelo usuário:
+
+- Marca do cabeçalho com `R$`, `Controle de Gastos` e `Financas pessoais`.
+- Bloco de introdução com `Controle local`, `Dashboard financeiro pessoal` e o
+  texto sobre dados salvos no navegador.
+
+Após a alteração, a tela inicia diretamente pelos cards do dashboard e o
+cabeçalho mantém apenas a navegação principal e o botão de novo gasto.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`

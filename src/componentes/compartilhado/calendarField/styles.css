@@ -1,0 +1,192 @@
+.calendar-field {
+  position: relative;
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  text-align: left;
+}
+
+.calendar-field__label {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.calendar-field__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  letter-spacing: 0;
+  outline: 0;
+  padding: 0 12px;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.calendar-field__trigger span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.calendar-field__trigger svg {
+  flex: 0 0 auto;
+  color: var(--accent);
+}
+
+.calendar-field__trigger:hover,
+.calendar-field__trigger:focus {
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.calendar-field__trigger--compact {
+  min-width: 128px;
+}
+
+.month-field {
+  width: min(150px, 100%);
+}
+
+.calendar-field__popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 30;
+  width: 306px;
+  padding: 14px;
+  border: 1px solid #c7d7ea;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.16);
+}
+
+.calendar-field__popover--month {
+  width: 252px;
+}
+
+.calendar-field__header {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) 36px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.calendar-field__header strong {
+  color: var(--text-strong);
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.calendar-field__header button {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #f8fafc;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.calendar-field__header button:hover {
+  border-color: #bfdbfe;
+  background: #eef4ff;
+  color: var(--accent);
+}
+
+.calendar-field__weekdays,
+.calendar-field__days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calendar-field__weekdays {
+  margin-bottom: 6px;
+}
+
+.calendar-field__weekdays span {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.calendar-field__day,
+.calendar-field__months button {
+  display: grid;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.calendar-field__day {
+  width: 36px;
+  height: 34px;
+}
+
+.calendar-field__day:hover,
+.calendar-field__months button:hover {
+  border-color: #bfdbfe;
+  background: #eef4ff;
+  color: var(--accent);
+}
+
+.calendar-field__day.is-muted {
+  color: #b4bfcd;
+}
+
+.calendar-field__day.is-today {
+  border-color: #b7d7c8;
+  color: #0f766e;
+}
+
+.calendar-field__day.is-selected,
+.calendar-field__months button.is-selected {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.2);
+}
+
+.calendar-field__months {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.calendar-field__months button {
+  min-height: 38px;
+}
+
+@media (max-width: 620px) {
+  .calendar-field__popover {
+    width: min(306px, calc(100vw - 32px));
+  }
+
+  .calendar-field__popover--month {
+    width: min(252px, calc(100vw - 32px));
+  }
+}
