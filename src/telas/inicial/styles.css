@@ -1,0 +1,30 @@
+.pagina-inicial {
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
+}
+
+.pagina-inicial__centro {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  gap: 25px;
+  place-content: center;
+  place-items: center;
+}
+
+.pagina-inicial__espaco {
+  height: 88px;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 1024px) {
+  .pagina-inicial__centro {
+    gap: 18px;
+    padding: 32px 20px 24px;
+  }
+
+  .pagina-inicial__espaco {
+    height: 48px;
+  }
+}
