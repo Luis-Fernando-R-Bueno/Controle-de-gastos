@@ -18,7 +18,7 @@ Entregar um sistema web funcional onde o usuário consiga:
 - Gerenciar categorias.
 - Pesquisar lançamentos.
 - Visualizar o histórico completo.
-- Acompanhar um dashboard mensal atualizado automaticamente.
+- Acompanhar um painel mensal atualizado automaticamente.
 - Persistir os dados localmente no navegador usando `localStorage`.
 
 O objetivo visual é parecer um pequeno sistema financeiro pessoal, e não apenas
@@ -35,7 +35,7 @@ uma planilha digital.
 
 ## Funcionalidades Principais
 
-### Dashboard Mensal
+### Painel Mensal
 
 A tela inicial deve apresentar um resumo financeiro do mês atual.
 
@@ -48,7 +48,7 @@ Deve exibir:
 - Resumo de gastos por categoria.
 - Resumo de gastos por mês.
 
-O dashboard deve ser atualizado automaticamente conforme novos gastos forem
+O painel deve ser atualizado automaticamente conforme novos gastos forem
 cadastrados, editados ou excluídos.
 
 ### Cadastro de Gastos
@@ -66,7 +66,7 @@ Campo opcional:
 - Descrição.
 
 Ao cadastrar um gasto, ele deve ser salvo no `localStorage` e aparecer
-automaticamente no histórico e no dashboard.
+automaticamente no histórico e no painel.
 
 ### Histórico de Gastos
 
@@ -144,8 +144,8 @@ src/
     compartilhado/
       header/
       searchBar/
-    dashboard/
-      dashboardCards/
+    painel/
+      painelCards/
       resumoCategorias/
       resumoMensal/
     gastos/
@@ -154,7 +154,7 @@ src/
     categorias/
       categoryManager/
   telas/
-    dashboard/
+    painel/
     gastos/
     categorias/
   servicos/
@@ -190,7 +190,7 @@ Depois, o projeto pode evoluir para:
 - API com Node.js e Express.
 - Banco de dados MySQL ou PostgreSQL.
 - Relatórios exportáveis.
-- Dashboard com gráficos mais completos.
+- Painel com gráficos mais completos.
 
 ## Status da Implementação - 22/06/2026
 
@@ -199,7 +199,7 @@ um sistema de controle de gastos pessoais.
 
 Entregas realizadas:
 
-- Dashboard mensal com total do mês, quantidade de lançamentos, maior categoria,
+- Painel mensal com total do mês, quantidade de lançamentos, maior categoria,
   média por gasto, gastos recentes, resumo por categoria e resumo por mês.
 - Cadastro, edição e exclusão de gastos com persistência em `localStorage`.
 - Histórico completo com pesquisa dinâmica por descrição, categoria ou valor.
@@ -210,6 +210,85 @@ Entregas realizadas:
 - Estrutura organizada em `componentes`, `telas`, `hooks`, `servicos` e `utils`.
 - Estilos responsivos e interface com aparência de sistema financeiro pessoal.
 - Pacote `lucide-react` instalado para ícones da interface.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Ajuste da Seta de Voltar - 22/06/2026
+
+Alterações realizadas:
+
+- Seta de voltar da tela de importação reposicionada para o canto superior
+  esquerdo do corpo do site.
+- Painel de importação mantido centralizado após a mudança de posicionamento da
+  seta.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Ajuste da Tela de Importação e Exportação - 22/06/2026
+
+Alterações realizadas:
+
+- Botão de voltar da tela de importação/exportação movido para o corpo da página,
+  acima do painel principal.
+- Botão de exportação removido da tela `Gastos`.
+- Exportação permanece disponível na tela de importação/exportação.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Ajuste da Tela de Importação - 22/06/2026
+
+Alterações realizadas:
+
+- Tela de importação recebeu também o botão `Exportar registros`.
+- Atalho flutuante de importação alterado para ícone cinza discreto no canto
+  inferior direito, sem fundo azul.
+- Botão de voltar da tela de importação virou botão de ícone fixado no canto
+  superior esquerdo.
+- Lógica de download dos registros centralizada em utilitário compartilhado.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Tela de Importação e Atalho Flutuante - 22/06/2026
+
+Alterações realizadas:
+
+- Criada a tela `src/telas/importar` para concentrar a importação de registros.
+- Adicionado botão flutuante apenas com ícone no canto inferior direito para
+  abrir a tela de importação.
+- Botão textual de importação removido da tela `Gastos`.
+- Tela `Gastos` mantém apenas a exportação de registros.
+- A regra de ignorar registros 100% idênticos aos já cadastrados permanece na
+  importação.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Painel e Importação/Exportação de Registros - 22/06/2026
+
+Alterações realizadas:
+
+- Texto visível do menu alterado para `Painel`.
+- Botões `Exportar registros` e `Importar registros` adicionados na tela
+  `Gastos`.
+- Exportação gera arquivo `.json` com os registros cadastrados.
+- Importação aceita arquivo `.json` e ignora registros que já existam no sistema
+  com os mesmos campos de data, categoria, valor e descrição.
+- Importação informa quantos registros foram importados, ignorados como
+  duplicados ou considerados inválidos.
 
 Validações executadas:
 
@@ -275,11 +354,11 @@ Validações executadas:
 - `npm.cmd run lint`
 - `npm.cmd run build`
 
-## Ajuste de Espaçamento do Seletor do Dashboard - 22/06/2026
+## Ajuste de Espaçamento do Seletor do Painel - 22/06/2026
 
 Alterações realizadas:
 
-- Espaçamento vertical do seletor de mês do dashboard ajustado para equilibrar
+- Espaçamento vertical do seletor de mês do painel ajustado para equilibrar
   a distância superior e inferior antes dos cards.
 
 Validações executadas:
@@ -287,11 +366,11 @@ Validações executadas:
 - `npm.cmd run lint`
 - `npm.cmd run build`
 
-## Remoção do Rótulo do Seletor do Dashboard - 22/06/2026
+## Remoção do Rótulo do Seletor do Painel - 22/06/2026
 
 Alterações realizadas:
 
-- Removido o rótulo `Mês` acima do seletor de mês do dashboard.
+- Removido o rótulo `Mês` acima do seletor de mês do painel.
 - Seletor permanece centralizado e destacado.
 
 Validações executadas:
@@ -299,13 +378,13 @@ Validações executadas:
 - `npm.cmd run lint`
 - `npm.cmd run build`
 
-## Destaque do Seletor de Mês no Dashboard - 22/06/2026
+## Destaque do Seletor de Mês no Painel - 22/06/2026
 
 Alterações realizadas:
 
-- Seletor de mês do dashboard centralizado.
+- Seletor de mês do painel centralizado.
 - Campo recebeu mais destaque visual com tamanho maior, borda azul e sombra.
-- Ajuste aplicado apenas no dashboard, sem alterar o seletor de mês da tela de
+- Ajuste aplicado apenas no painel, sem alterar o seletor de mês da tela de
   gastos.
 
 Validações executadas:
@@ -313,11 +392,11 @@ Validações executadas:
 - `npm.cmd run lint`
 - `npm.cmd run build`
 
-## Seletor de Mês no Dashboard - 22/06/2026
+## Seletor de Mês no Painel - 22/06/2026
 
 Alterações realizadas:
 
-- Adicionado seletor de mês no dashboard.
+- Adicionado seletor de mês no painel.
 - Cards mensais, maior categoria, gastos recentes e resumo por categoria passam
   a considerar o mês selecionado.
 - `Gastos recentes` continua ignorando lançamentos com data futura, mesmo quando
@@ -334,7 +413,7 @@ Alterações realizadas:
 
 - Gastos com data superior ao dia atual não aparecem mais em `Gastos recentes`.
 - Gastos futuros continuam salvos e visíveis no histórico, apenas deixam de
-  compor a lista de registros recentes do dashboard.
+  compor a lista de registros recentes do painel.
 
 Validações executadas:
 
@@ -485,13 +564,13 @@ Validações executadas:
 - `npm.cmd run lint`
 - `npm.cmd run build`
 
-## Ajuste de Menu e Dashboard - 22/06/2026
+## Ajuste de Menu e Painel - 22/06/2026
 
 Alterações realizadas:
 
 - Menu principal centralizado no topo e com mais destaque visual.
 - Botão `Novo gasto` removido do menu.
-- Formulário de cadastro de novo gasto removido do dashboard.
+- Formulário de cadastro de novo gasto removido do painel.
 - Cadastro de gastos mantido apenas na tela `Gastos`.
 
 Validações executadas:
@@ -508,10 +587,10 @@ Servidor local iniciado para teste:
 Removidas as informações textuais do topo solicitadas pelo usuário:
 
 - Marca do cabeçalho com `R$`, `Controle de Gastos` e `Financas pessoais`.
-- Bloco de introdução com `Controle local`, `Dashboard financeiro pessoal` e o
+- Bloco de introdução com `Controle local`, `Painel financeiro pessoal` e o
   texto sobre dados salvos no navegador.
 
-Após a alteração, a tela inicia diretamente pelos cards do dashboard e o
+Após a alteração, a tela inicia diretamente pelos cards do painel e o
 cabeçalho mantém apenas a navegação principal e o botão de novo gasto.
 
 Validações executadas:

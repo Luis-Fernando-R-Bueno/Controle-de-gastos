@@ -192,7 +192,7 @@ function ExpenseList({ expenses, onDeleteExpense, onEditExpense }) {
       <ConfirmDialog
         confirmLabel="Excluir"
         isOpen={Boolean(pendingDeleteExpense)}
-        message="Esta ação removerá o gasto do histórico e atualizará o dashboard."
+        message="Esta ação removerá o gasto do histórico e atualizará o painel."
         title="Excluir gasto?"
         onCancel={() => setPendingDeleteExpense(null)}
         onConfirm={confirmDeleteExpense}

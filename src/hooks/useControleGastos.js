@@ -26,6 +26,54 @@ function normalizeText(value) {
     .toLowerCase()
 }
 
+function getExpenseDuplicateKey(expense) {
+  return JSON.stringify({
+    categoryId: String(expense.categoryId ?? ''),
+    date: String(expense.date ?? ''),
+    description: String(expense.description ?? '').trim(),
+    value: Number(expense.value) || 0,
+  })
+}
+
+function extractImportRecords(data) {
+  if (Array.isArray(data)) {
+    return data
+  }
+
+  if (Array.isArray(data?.expenses)) {
+    return data.expenses
+  }
+
+  if (Array.isArray(data?.registros)) {
+    return data.registros
+  }
+
+  return []
+}
+
+function normalizeImportedExpense(expense) {
+  const date = String(expense?.date ?? expense?.data ?? '').slice(0, 10)
+  const categoryId = String(expense?.categoryId ?? expense?.categoriaId ?? '')
+  const value = parseCurrencyInput(expense?.value ?? expense?.valor)
+
+  if (!date || !categoryId || !Number.isFinite(value) || value <= 0) {
+    return null
+  }
+
+  const now = new Date().toISOString()
+  const createdAt = expense?.createdAt ? String(expense.createdAt) : now
+
+  return {
+    id: expense?.id ? String(expense.id) : createId('gasto'),
+    date,
+    categoryId,
+    value,
+    description: String(expense?.description ?? expense?.descricao ?? '').trim(),
+    createdAt,
+    updatedAt: expense?.updatedAt ? String(expense.updatedAt) : createdAt,
+  }
+}
+
 function aggregateByCategory(expenses) {
   const total = expenses.reduce((sum, expense) => sum + expense.value, 0)
   const grouped = expenses.reduce((acc, expense) => {
@@ -178,6 +226,55 @@ export function useControleGastos(dashboardMonthKey = getCurrentMonthKey()) {
     )
   }, [])
 
+  const exportRecords = useCallback(
+    () => ({
+      exportedAt: new Date().toISOString(),
+      expenses,
+      recordsCount: expenses.length,
+      type: 'controle-gastos-registros',
+      version: 1,
+    }),
+    [expenses],
+  )
+
+  const importRecords = useCallback((data) => {
+    const records = extractImportRecords(data)
+    const existingKeys = new Set(expenses.map(getExpenseDuplicateKey))
+    const importedExpenses = []
+    let invalidCount = 0
+    let skippedCount = 0
+
+    records.forEach((record) => {
+      const normalizedExpense = normalizeImportedExpense(record)
+
+      if (!normalizedExpense) {
+        invalidCount += 1
+        return
+      }
+
+      const duplicateKey = getExpenseDuplicateKey(normalizedExpense)
+
+      if (existingKeys.has(duplicateKey)) {
+        skippedCount += 1
+        return
+      }
+
+      existingKeys.add(duplicateKey)
+      importedExpenses.push(normalizedExpense)
+    })
+
+    if (importedExpenses.length > 0) {
+      setExpenses((currentExpenses) => [...importedExpenses, ...currentExpenses])
+    }
+
+    return {
+      importedCount: importedExpenses.length,
+      invalidCount,
+      skippedCount,
+      totalCount: records.length,
+    }
+  }, [expenses])
+
   const addCategory = useCallback((categoryName) => {
     const cleanName = categoryName.trim()
 
@@ -279,10 +376,12 @@ export function useControleGastos(dashboardMonthKey = getCurrentMonthKey()) {
     addExpense,
     updateExpense,
     deleteExpense,
+    exportRecords,
     addCategory,
     updateCategory,
     toggleCategoryStatus,
     removeCategory,
     filterExpenses,
+    importRecords,
   }
 }

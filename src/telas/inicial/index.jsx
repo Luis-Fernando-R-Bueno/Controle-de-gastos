@@ -1,3 +1,4 @@
+import { Upload } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import CategoryManager from '../../componentes/categorias/categoryManager'
 import AppHeader from '../../componentes/compartilhado/appHeader'
@@ -9,6 +10,7 @@ import ExpenseFilters from '../../componentes/gastos/expenseFilters'
 import ExpenseForm from '../../componentes/gastos/expenseForm'
 import ExpenseList from '../../componentes/gastos/expenseList'
 import { useControleGastos } from '../../hooks/useControleGastos'
+import Importar from '../importar'
 import { getCurrentMonthKey } from '../../utils/dateUtils'
 import './styles.css'
 
@@ -26,14 +28,17 @@ function Inicial() {
     categories,
     dashboard,
     deleteExpense,
+    exportRecords,
     expenses,
     filterExpenses,
+    importRecords,
     removeCategory,
     toggleCategoryStatus,
     updateCategory,
     updateExpense,
   } = useControleGastos(dashboardMonthKey)
   const [activeView, setActiveView] = useState('dashboard')
+  const [previousView, setPreviousView] = useState('dashboard')
   const [filters, setFilters] = useState(INITIAL_FILTERS)
   const [editingExpense, setEditingExpense] = useState(null)
   const [formFocusKey, setFormFocusKey] = useState(0)
@@ -74,6 +79,15 @@ function Inicial() {
     setEditingExpense(null)
   }
 
+  function openImportView() {
+    setPreviousView(activeView === 'importar' ? previousView : activeView)
+    setActiveView('importar')
+  }
+
+  function closeImportView() {
+    setActiveView(previousView)
+  }
+
   return (
     <div className="pagina-inicial">
       <AppHeader
@@ -83,7 +97,7 @@ function Inicial() {
 
       <main className="pagina-inicial__main">
         {activeView === 'dashboard' ? (
-          <section className="pagina-inicial__view" aria-label="Dashboard mensal">
+          <section className="pagina-inicial__view" aria-label="Painel mensal">
             <div className="pagina-inicial__dashboard-toolbar">
               <MonthField
                 label=""
@@ -155,7 +169,27 @@ function Inicial() {
             />
           </section>
         ) : null}
+
+        {activeView === 'importar' ? (
+          <Importar
+            onBack={closeImportView}
+            onExportRecords={exportRecords}
+            onImportRecords={importRecords}
+          />
+        ) : null}
       </main>
+
+      {activeView !== 'importar' ? (
+        <button
+          className="pagina-inicial__floating-import"
+          type="button"
+          aria-label="Importar registros"
+          title="Importar registros"
+          onClick={openImportView}
+        >
+          <Upload size={22} aria-hidden="true" />
+        </button>
+      ) : null}
     </div>
   )
 }

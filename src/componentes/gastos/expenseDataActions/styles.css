@@ -1,0 +1,45 @@
+.expense-data-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.expense-data-actions__buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.expense-data-actions__feedback {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 800;
+  text-align: right;
+}
+
+@media (max-width: 720px) {
+  .expense-data-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .expense-data-actions__buttons {
+    flex-direction: column;
+  }
+
+  .expense-data-actions__buttons .button {
+    width: 100%;
+  }
+
+  .expense-data-actions__feedback {
+    text-align: left;
+  }
+}

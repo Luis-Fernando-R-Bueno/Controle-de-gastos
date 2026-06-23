@@ -4,7 +4,7 @@ import './styles.css'
 const NAV_ITEMS = [
   {
     id: 'dashboard',
-    label: 'Dashboard',
+    label: 'Painel',
     Icon: LayoutDashboard,
   },
   {
