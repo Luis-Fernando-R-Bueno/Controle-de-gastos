@@ -1,6 +1,6 @@
 .category-manager {
   display: grid;
-  grid-template-columns: minmax(300px, 420px) minmax(0, 1fr);
+  grid-template-columns: 1fr;
   gap: 18px;
 }
 
@@ -25,6 +25,8 @@
 
 .category-manager__form {
   display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px;
+  align-items: end;
   gap: 14px;
   margin-top: 20px;
 }
@@ -32,6 +34,10 @@
 .category-manager__form label {
   display: grid;
   gap: 7px;
+}
+
+.category-manager__form .button {
+  width: 100%;
 }
 
 .category-manager__form label span {
@@ -122,8 +128,8 @@
   gap: 8px;
 }
 
-@media (max-width: 1020px) {
-  .category-manager {
+@media (max-width: 640px) {
+  .category-manager__form {
     grid-template-columns: 1fr;
   }
 }

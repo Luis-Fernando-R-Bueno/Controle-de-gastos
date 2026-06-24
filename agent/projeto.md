@@ -31,7 +31,7 @@ uma planilha digital.
 - `localStorage` para persistência inicial.
 - Sem back-end na primeira versão.
 - Sem banco de dados na primeira versão.
-- Sem autenticação na primeira versão.
+- Autenticação local simples na primeira versão, sem back-end.
 
 ## Funcionalidades Principais
 
@@ -172,7 +172,7 @@ próprias.
 
 - Usar `localStorage` para persistência dos dados.
 - Não usar banco de dados ainda.
-- Não usar autenticação nesta versão.
+- Usar apenas autenticação local simples nesta versão.
 - Manter o código limpo.
 - Comentar apenas quando necessário.
 - Separar bem componentes, funções utilitárias e estilos.
@@ -399,6 +399,160 @@ Alterações realizadas:
 - Mensagem de erro do login movida para cima do campo `Usuário`.
 - Ícone do cadeado no cabeçalho substituído por logo circular azul com cifrão.
 - Cabeçalho do formulário centralizado para destacar a marca.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Logo da Guia e Tela de Login - 24/06/2026
+
+Alterações realizadas:
+
+- Criada uma logo circular azul com cifrão para o sistema.
+- Favicon da guia atualizado para usar a nova logo.
+- Tela de login passou a exibir a logo no cabeçalho e como marca d'água discreta
+  atrás do formulário.
+- Manifesto do PWA e cache offline passaram a incluir a logo.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Configurações, Backup e Segurança - 24/06/2026
+
+Alterações realizadas:
+
+- Aba `Configurações` mantida no menu principal do sistema.
+- Tela de configurações reorganizada seguindo a lógica do projeto
+  `SC-Censo-Diario`, adaptada ao domínio de controle de gastos.
+- `Categorias` passou a ficar em `Configurações > Categorias`.
+- Backup de registros passou a ficar em `Configurações > Backup`, substituindo a
+  antiga tela isolada de importação/exportação.
+- Removidos a tela antiga `src/telas/importar` e o atalho flutuante de
+  importação.
+- Saída do sistema removida do menu principal e movida para
+  `Configurações > Segurança e acesso`.
+- Adicionadas páginas de `Saiba mais`, `Suporte` e `Termos de uso`.
+- Estilização das novas telas usa as cores e variáveis atuais do projeto.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Hierarquia de Configurações - 24/06/2026
+
+Alterações realizadas:
+
+- Lista principal de `Configurações` alterada para cards verticais, seguindo a
+  organização visual usada no projeto `SC-Censo-Diario`.
+- Criada a tela `Configurações > Perfil`, com dados do acesso local, último
+  login e foto de perfil salva no navegador.
+- `Saiba mais` passou a funcionar como agrupador de informações do projeto.
+- Criada a tela `Saiba mais > Quem somos`, com origem e linha do tempo resumida
+  do Controle de Gastos.
+- `Termos de uso` foi movido para `Saiba mais > Termos de uso e privacidade`.
+- `Suporte` passou a ter subpáginas funcionais:
+  - `Suporte > Dúvidas frequentes`.
+  - `Suporte > Participe do projeto`.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Ajustes Visuais de Configurações - 24/06/2026
+
+Alterações realizadas:
+
+- Cabeçalho principal de `Configurações` simplificado para exibir apenas
+  `Olá, Luis`, sem o card branco ao redor.
+- Ordem da lista principal ajustada para:
+  - Perfil.
+  - Categorias.
+  - Segurança e acesso.
+  - Suporte.
+  - Saiba mais.
+  - Backup.
+- Tela `Perfil` refeita com identidade local, foto de perfil, último login e
+  indicação de dados salvos no navegador.
+- Tela `Quem somos` refeita com apresentação própria do Controle de Gastos e
+  pilares do projeto.
+- Criado rodapé compartilhado inspirado no `SC-Censo-Diario`, com contatos e
+  links do projeto.
+- Rodapé adicionado ao layout logado do sistema.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Correção da Navegação Interna de Configurações - 24/06/2026
+
+Alterações realizadas:
+
+- Renderização das subpáginas de `Configurações` centralizada em uma função com
+  `switch` sobre `settingsView`.
+- Telas internas de `Perfil`, `Suporte > Dúvidas frequentes`,
+  `Suporte > Participe do projeto`, `Saiba mais > Quem somos` e
+  `Saiba mais > Termos de uso e privacidade` ficaram explicitamente mapeadas em
+  um único ponto.
+- Imports das subpáginas foram conferidos e validados pelo build.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Ajuste das Subpáginas de Configurações - 24/06/2026
+
+Alterações realizadas:
+
+- Removidos os cabeçalhos informativos grandes das subpáginas de
+  `Configurações`.
+- Subpáginas mantêm apenas o botão `Voltar` no topo.
+- Tela `Configurações > Categorias` passou a usar layout vertical:
+  - cadastro de nova categoria no topo;
+  - campo e botão lado a lado no desktop;
+  - lista de categorias abaixo do cadastro.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Conteúdo de Saiba Mais e Suporte - 24/06/2026
+
+Alterações realizadas:
+
+- Tela `Saiba mais > Quem somos` refeita como linha do tempo vertical, seguindo
+  o estilo usado na tela equivalente do `SC-Censo-Diario`.
+- Linha do tempo adaptada à história do Controle de Gastos: origem na planilha,
+  cadastro de gastos, categorias, dashboard, histórico, PWA, backup e evolução
+  futura.
+- Tela `Suporte > Dúvidas frequentes` recebeu cards mais espaçados e detalhados
+  sobre dados locais, uso offline, backup e segurança do acesso local.
+- Tela `Saiba mais > Termos de uso e privacidade` recebeu o texto completo
+  atualizado em 22 de junho de 2026, organizado em blocos estilizados.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Remoção da Tela de Ajuda - 24/06/2026
+
+Alterações realizadas:
+
+- Tela `Suporte > Ajuda` removida do projeto.
+- Card de `Ajuda` removido da tela `Configurações > Suporte`.
+- Import e renderização interna de `ConfiguracoesAjuda` removidos da tela
+  principal.
+- A pasta `src/telas/configuracoes/suporte/ajuda` foi excluída.
+- A opção `Suporte` passou a apontar apenas para `Dúvidas frequentes` e
+  `Participe do projeto`.
 
 Validações executadas:
 

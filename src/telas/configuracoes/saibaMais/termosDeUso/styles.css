@@ -1,0 +1,109 @@
+.termos-config__article {
+  display: grid;
+  gap: 18px;
+}
+
+.termos-config__hero,
+.termos-config__lead,
+.termos-config__section {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.termos-config__hero {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  padding: 24px;
+}
+
+.termos-config__icon {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border-radius: 8px;
+  background: #eef4ff;
+  color: var(--accent);
+}
+
+.termos-config__hero span,
+.termos-config__section > span {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.termos-config__hero h1 {
+  max-width: 860px;
+  margin-top: 6px;
+  font-size: clamp(26px, 4vw, 38px);
+  line-height: 1.08;
+}
+
+.termos-config__lead {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 14px;
+  padding: 20px;
+}
+
+.termos-config__lead svg {
+  color: var(--accent);
+}
+
+.termos-config__lead p {
+  margin: 0;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.termos-config__sections {
+  display: grid;
+  gap: 14px;
+}
+
+.termos-config__section {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 16px;
+  padding: 20px;
+}
+
+.termos-config__section > span {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border-radius: 8px;
+  background: #eef4ff;
+}
+
+.termos-config__section div {
+  display: grid;
+  gap: 8px;
+}
+
+.termos-config__section h2 {
+  font-size: 18px;
+}
+
+.termos-config__section p {
+  margin: 0;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+@media (max-width: 640px) {
+  .termos-config__hero,
+  .termos-config__lead,
+  .termos-config__section {
+    grid-template-columns: 1fr;
+  }
+}

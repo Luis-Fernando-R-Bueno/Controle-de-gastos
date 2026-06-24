@@ -1,4 +1,4 @@
-import { History, LayoutDashboard, LogOut, ReceiptText, Tags } from 'lucide-react'
+import { History, LayoutDashboard, ReceiptText, Settings } from 'lucide-react'
 import './styles.css'
 
 const NAV_ITEMS = [
@@ -13,18 +13,18 @@ const NAV_ITEMS = [
     Icon: ReceiptText,
   },
   {
-    id: 'categorias',
-    label: 'Categorias',
-    Icon: Tags,
-  },
-  {
     id: 'historico',
     label: 'Histórico',
     Icon: History,
   },
+  {
+    id: 'configuracoes',
+    label: 'Configurações',
+    Icon: Settings,
+  },
 ]
 
-function AppHeader({ activeView, onChangeView, onLogout }) {
+function AppHeader({ activeView, onChangeView }) {
   return (
     <header className="app-header">
       <nav className="app-header__nav" aria-label="Navegação principal">
@@ -42,16 +42,6 @@ function AppHeader({ activeView, onChangeView, onLogout }) {
           </button>
         ))}
       </nav>
-
-      <button
-        className="app-header__logout"
-        type="button"
-        aria-label="Sair"
-        title="Sair"
-        onClick={onLogout}
-      >
-        <LogOut size={19} aria-hidden="true" />
-      </button>
     </header>
   )
 }

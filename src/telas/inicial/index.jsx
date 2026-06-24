@@ -1,8 +1,7 @@
-import { Upload } from 'lucide-react'
 import { useMemo, useState } from 'react'
-import CategoryManager from '../../componentes/categorias/categoryManager'
 import AppHeader from '../../componentes/compartilhado/appHeader'
 import { MonthField } from '../../componentes/compartilhado/calendarField'
+import Rodape from '../../componentes/compartilhado/rodape'
 import DashboardCards from '../../componentes/dashboard/dashboardCards'
 import RecentExpenses from '../../componentes/dashboard/recentExpenses'
 import SummaryList from '../../componentes/dashboard/summaryList'
@@ -10,7 +9,17 @@ import ExpenseFilters from '../../componentes/gastos/expenseFilters'
 import ExpenseForm from '../../componentes/gastos/expenseForm'
 import ExpenseList from '../../componentes/gastos/expenseList'
 import { useControleGastos } from '../../hooks/useControleGastos'
-import Importar from '../importar'
+import Configuracoes from '../configuracoes'
+import ConfiguracoesBackup from '../configuracoes/backup'
+import ConfiguracoesCategorias from '../configuracoes/categorias'
+import ConfiguracoesPerfil from '../configuracoes/perfil'
+import ConfiguracoesSaibaMais from '../configuracoes/saibaMais'
+import ConfiguracoesQuemSomos from '../configuracoes/saibaMais/quemSomos'
+import ConfiguracoesTermosDeUso from '../configuracoes/saibaMais/termosDeUso'
+import ConfiguracoesSeguranca from '../configuracoes/segurancaEAcesso'
+import ConfiguracoesSuporte from '../configuracoes/suporte'
+import ConfiguracoesDuvidasFrequentes from '../configuracoes/suporte/duvidasFrequentes'
+import ConfiguracoesParticipeDoProjeto from '../configuracoes/suporte/participeDoProjeto'
 import Historico from '../historico'
 import { getCurrentMonthKey } from '../../utils/dateUtils'
 import './styles.css'
@@ -21,7 +30,7 @@ const INITIAL_FILTERS = {
   monthKey: '',
 }
 
-function Inicial({ onLogout }) {
+function Inicial({ onLogout, session }) {
   const [dashboardMonthKey, setDashboardMonthKey] = useState(getCurrentMonthKey)
   const {
     addCategory,
@@ -40,7 +49,7 @@ function Inicial({ onLogout }) {
     updateExpense,
   } = useControleGastos(dashboardMonthKey)
   const [activeView, setActiveView] = useState('dashboard')
-  const [previousView, setPreviousView] = useState('dashboard')
+  const [settingsView, setSettingsView] = useState('inicio')
   const [filters, setFilters] = useState(INITIAL_FILTERS)
   const [editingExpense, setEditingExpense] = useState(null)
   const [formFocusKey, setFormFocusKey] = useState(0)
@@ -81,26 +90,107 @@ function Inicial({ onLogout }) {
     setEditingExpense(null)
   }
 
-  function openImportView() {
-    setPreviousView(activeView === 'importar' ? previousView : activeView)
-    setActiveView('importar')
-  }
-
-  function closeImportView() {
-    setActiveView(previousView)
-  }
-
   function openDashboardMonth(monthKey) {
     setDashboardMonthKey(monthKey)
     setActiveView('dashboard')
+  }
+
+  function handleChangeView(view) {
+    setActiveView(view)
+
+    if (view === 'configuracoes') {
+      setSettingsView('inicio')
+    }
+  }
+
+  function openSettingsView(view) {
+    setSettingsView(view)
+    setActiveView('configuracoes')
+  }
+
+  function closeSettingsSubpage() {
+    setSettingsView('inicio')
+  }
+
+  function renderSettingsContent() {
+    switch (settingsView) {
+      case 'perfil':
+        return <ConfiguracoesPerfil onBack={closeSettingsSubpage} session={session} />
+
+      case 'categorias':
+        return (
+          <ConfiguracoesCategorias
+            categories={categories}
+            expenses={expenses}
+            onAddCategory={addCategory}
+            onBack={closeSettingsSubpage}
+            onRemoveCategory={removeCategory}
+            onToggleCategory={toggleCategoryStatus}
+            onUpdateCategory={updateCategory}
+          />
+        )
+
+      case 'backup':
+        return (
+          <ConfiguracoesBackup
+            onBack={closeSettingsSubpage}
+            onExportRecords={exportRecords}
+            onImportRecords={importRecords}
+          />
+        )
+
+      case 'seguranca':
+        return <ConfiguracoesSeguranca onBack={closeSettingsSubpage} onLogout={onLogout} />
+
+      case 'saibaMais':
+        return (
+          <ConfiguracoesSaibaMais
+            onAbrirQuemSomos={() => openSettingsView('quemSomos')}
+            onAbrirTermos={() => openSettingsView('termos')}
+            onBack={closeSettingsSubpage}
+          />
+        )
+
+      case 'quemSomos':
+        return <ConfiguracoesQuemSomos onBack={() => openSettingsView('saibaMais')} />
+
+      case 'suporte':
+        return (
+          <ConfiguracoesSuporte
+            onAbrirDuvidas={() => openSettingsView('duvidasFrequentes')}
+            onAbrirParticipe={() => openSettingsView('participeDoProjeto')}
+            onBack={closeSettingsSubpage}
+          />
+        )
+
+      case 'duvidasFrequentes':
+        return <ConfiguracoesDuvidasFrequentes onBack={() => openSettingsView('suporte')} />
+
+      case 'participeDoProjeto':
+        return <ConfiguracoesParticipeDoProjeto onBack={() => openSettingsView('suporte')} />
+
+      case 'termos':
+        return <ConfiguracoesTermosDeUso onBack={() => openSettingsView('saibaMais')} />
+
+      default:
+        return (
+          <Configuracoes
+            onAbrirBackup={() => openSettingsView('backup')}
+            onAbrirCategorias={() => openSettingsView('categorias')}
+            onAbrirPerfil={() => openSettingsView('perfil')}
+            onAbrirSaibaMais={() => openSettingsView('saibaMais')}
+            onAbrirSeguranca={() => openSettingsView('seguranca')}
+            onAbrirSuporte={() => openSettingsView('suporte')}
+          />
+        )
+    }
   }
 
   return (
     <div className="pagina-inicial">
       <AppHeader
         activeView={activeView}
-        onChangeView={setActiveView}
-        onLogout={onLogout}
+        onChangeView={handleChangeView}
       />
 
       <main className="pagina-inicial__main">
@@ -165,19 +255,6 @@ function Inicial({ onLogout }) {
           </section>
         ) : null}
 
-        {activeView === 'categorias' ? (
-          <section className="pagina-inicial__view" aria-label="Gerenciamento de categorias">
-            <CategoryManager
-              categories={categories}
-              expenses={expenses}
-              onAddCategory={addCategory}
-              onRemoveCategory={removeCategory}
-              onToggleCategory={toggleCategoryStatus}
-              onUpdateCategory={updateCategory}
-            />
-          </section>
-        ) : null}
-
         {activeView === 'historico' ? (
           <Historico
             months={historicalMonths}
@@ -185,26 +262,10 @@ function Inicial({ onLogout }) {
           />
         ) : null}
 
-        {activeView === 'importar' ? (
-          <Importar
-            onBack={closeImportView}
-            onExportRecords={exportRecords}
-            onImportRecords={importRecords}
-          />
-        ) : null}
-      </main>
+        {activeView === 'configuracoes' ? renderSettingsContent() : null}
 
-      {activeView !== 'importar' ? (
-        <button
-          className="pagina-inicial__floating-import"
-          type="button"
-          aria-label="Importar registros"
-          title="Importar registros"
-          onClick={openImportView}
-        >
-          <Upload size={22} aria-hidden="true" />
-        </button>
-      ) : null}
+        <Rodape />
+      </main>
     </div>
   )
 }

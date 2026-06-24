@@ -30,7 +30,7 @@ function App() {
     return <Login onLogin={handleLogin} />
   }
 
-  return <Inicial onLogout={handleLogout} />
+  return <Inicial session={session} onLogout={handleLogout} />
 }
 
 export default App

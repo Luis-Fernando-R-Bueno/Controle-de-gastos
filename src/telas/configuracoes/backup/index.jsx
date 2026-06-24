@@ -1,9 +1,10 @@
 import { ArrowLeft, Download, FileJson, Upload } from 'lucide-react'
 import { useRef, useState } from 'react'
-import { downloadRecordsFile } from '../../utils/recordsFile'
+import { downloadRecordsFile } from '../../../utils/recordsFile'
+import '../styles.css'
 import './styles.css'
 
-function Importar({ onBack, onExportRecords, onImportRecords }) {
+function ConfiguracoesBackup({ onBack, onExportRecords, onImportRecords }) {
   const fileInputRef = useRef(null)
   const [feedback, setFeedback] = useState(null)
 
@@ -11,17 +12,15 @@ function Importar({ onBack, onExportRecords, onImportRecords }) {
     downloadRecordsFile(onExportRecords())
     setFeedback({
       type: 'success',
-      title: 'Exportação concluída',
-      details: ['Arquivo de registros gerado'],
+      title: 'Backup exportado',
+      details: ['Arquivo JSON criado com seus registros locais'],
     })
   }
 
   async function handleImport(event) {
     const file = event.target.files?.[0]
 
-    if (!file) {
-      return
-    }
+    if (!file) return
 
     try {
       const text = await file.text()
@@ -30,7 +29,7 @@ function Importar({ onBack, onExportRecords, onImportRecords }) {
 
       setFeedback({
         type: 'success',
-        title: 'Importação concluída',
+        title: 'Backup importado',
         details: [
           `${result.importedCount} importados`,
           `${result.skippedCount} duplicados ignorados`,
@@ -41,7 +40,7 @@ function Importar({ onBack, onExportRecords, onImportRecords }) {
       setFeedback({
         type: 'error',
         title: 'Arquivo inválido',
-        details: ['Use um arquivo JSON exportado pelo sistema.'],
+        details: ['Use um JSON exportado pelo Controle de Gastos.'],
       })
     } finally {
       event.target.value = ''
@@ -49,51 +48,44 @@ function Importar({ onBack, onExportRecords, onImportRecords }) {
   }
 
   return (
-    <section className="tela-importar" aria-label="Importar registros">
-      <button
-        className="tela-importar__back"
-        type="button"
-        aria-label="Voltar"
-        title="Voltar"
-        onClick={onBack}
-      >
-        <ArrowLeft size={18} aria-hidden="true" />
-      </button>
+    <section className="configuracoes-subpagina backup-config" aria-label="Backup">
+      <div className="configuracoes__subnav">
+        <button className="configuracoes__voltar" type="button" onClick={onBack}>
+          <ArrowLeft size={18} aria-hidden="true" />
+          Voltar
+        </button>
+      </div>
 
-      <div className="tela-importar__panel">
-        <div className="tela-importar__icon" aria-hidden="true">
-          <FileJson size={34} />
+      <section className="configuracoes__section backup-config__panel">
+        <div className="backup-config__icon" aria-hidden="true">
+          <FileJson size={32} />
         </div>
 
-        <div className="tela-importar__content">
-          <h1>Importar registros</h1>
+        <div className="configuracoes__conteudo backup-config__content">
+          <h2>Arquivos locais</h2>
           <p>
-            Selecione um arquivo JSON exportado pelo sistema. Registros idênticos
-            aos já cadastrados serão ignorados automaticamente.
+            O backup gera um arquivo JSON com os gastos cadastrados. Na importação,
+            registros idênticos aos existentes são ignorados automaticamente.
           </p>
         </div>
 
-        <div className="tela-importar__actions">
-          <button
-            className="button button--ghost tela-importar__action"
-            type="button"
-            onClick={handleExport}
-          >
+        <div className="configuracoes__acoes backup-config__actions">
+          <button className="button button--ghost" type="button" onClick={handleExport}>
             <Download size={18} aria-hidden="true" />
             Exportar registros
           </button>
           <button
-            className="button button--primary tela-importar__action"
+            className="button button--primary"
             type="button"
             onClick={() => fileInputRef.current?.click()}
           >
             <Upload size={18} aria-hidden="true" />
-            Selecionar arquivo
+            Importar arquivo
           </button>
         </div>
 
         {feedback ? (
-          <div className={`tela-importar__feedback tela-importar__feedback--${feedback.type}`}>
+          <div className={`backup-config__feedback backup-config__feedback--${feedback.type}`}>
             <strong>{feedback.title}</strong>
             <span>{feedback.details.join(', ')}.</span>
           </div>
@@ -105,9 +97,9 @@ function Importar({ onBack, onExportRecords, onImportRecords }) {
           accept="application/json,.json"
           onChange={handleImport}
         />
-      </div>
+      </section>
     </section>
   )
 }
 
-export default Importar
+export default ConfiguracoesBackup

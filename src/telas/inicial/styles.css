@@ -71,32 +71,6 @@
   min-width: 0;
 }
 
-.pagina-inicial__floating-import {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  z-index: 50;
-  display: grid;
-  width: 44px;
-  height: 44px;
-  place-items: center;
-  border: 0;
-  border-radius: 999px;
-  background: transparent;
-  color: #94a3b8;
-  cursor: pointer;
-  transition:
-    background-color 160ms ease,
-    color 160ms ease,
-    transform 160ms ease;
-}
-
-.pagina-inicial__floating-import:hover {
-  background: #edf2f7;
-  color: #64748b;
-  transform: translateY(-2px);
-}
-
 @media (max-width: 1020px) {
   .pagina-inicial__expense-layout,
   .pagina-inicial__summary-grid {
@@ -115,10 +89,5 @@
 
   .pagina-inicial__dashboard-toolbar .month-field {
     width: 100%;
-  }
-
-  .pagina-inicial__floating-import {
-    right: 16px;
-    bottom: 16px;
   }
 }
