@@ -1,3 +1,5 @@
+import { getCategoryColor } from '../utils/categoryColors'
+
 const STORAGE_KEYS = {
   categories: 'controle-gastos:categories',
   categoryDefaultsVersion: 'controle-gastos:category-defaults-version',
@@ -6,19 +8,6 @@ const STORAGE_KEYS = {
 
 const CATEGORY_DEFAULTS_VERSION = 2
 const SIMULATION_DESCRIPTION_PREFIX = 'Simulação -'
-
-export const CATEGORY_COLORS = [
-  '#2563eb',
-  '#0f766e',
-  '#ca8a04',
-  '#9333ea',
-  '#dc2626',
-  '#0891b2',
-  '#ea580c',
-  '#475569',
-  '#16a34a',
-  '#db2777',
-]
 
 export const DEFAULT_CATEGORIES = [
   'Cartão de Crédito',
@@ -34,7 +23,7 @@ export const DEFAULT_CATEGORIES = [
 ].map((name, index) => ({
   id: `categoria-${index + 1}`,
   nome: name,
-  cor: CATEGORY_COLORS[index],
+  cor: getCategoryColor(name, index),
   ativa: true,
   createdAt: new Date().toISOString(),
 }))
@@ -101,13 +90,17 @@ export function loadCategories() {
     return DEFAULT_CATEGORIES
   }
 
-  const categories = storedCategories.map((category, index) => ({
-    id: category.id ?? `categoria-${index + 1}`,
-    nome: normalizeCategoryName(category.nome ?? 'Categoria'),
-    cor: category.cor ?? CATEGORY_COLORS[index % CATEGORY_COLORS.length],
-    ativa: category.ativa !== false,
-    createdAt: category.createdAt ?? new Date().toISOString(),
-  }))
+  const categories = storedCategories.map((category, index) => {
+    const nome = normalizeCategoryName(category.nome ?? 'Categoria')
+
+    return {
+      id: category.id ?? `categoria-${index + 1}`,
+      nome,
+      cor: getCategoryColor(nome, index),
+      ativa: category.ativa !== false,
+      createdAt: category.createdAt ?? new Date().toISOString(),
+    }
+  })
 
   return applyCategoryDefaultMigrations(categories)
 }

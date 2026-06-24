@@ -1,13 +1,13 @@
-.app-header {
+﻿.app-header {
   position: sticky;
   top: 0;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px 32px;
+  padding: var(--spacing-lg) var(--spacing-xl);
   border-bottom: 1px solid var(--border);
-  background: rgba(248, 250, 252, 0.94);
+  background: var(--color-scrim);
   backdrop-filter: blur(16px);
 }
 
@@ -15,28 +15,27 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: var(--spacing-sm);
   min-height: 56px;
-  padding: 7px;
-  border: 1px solid #c7d7ea;
-  border-radius: 8px;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
   background: var(--surface);
-  box-shadow:
-    0 14px 34px rgba(15, 23, 42, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(18px);
 }
 
 .app-header__tab {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: var(--spacing-sm);
   min-width: 118px;
   min-height: 42px;
   border: 0;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font: inherit;
-  font-size: 14px;
+  font-size: var(--font-size-md);
   font-weight: 800;
   letter-spacing: 0;
   cursor: pointer;
@@ -61,18 +60,18 @@
 
 .app-header__tab:hover,
 .app-header__tab.is-active {
-  background: #eef4ff;
-  color: #1d4ed8;
+  background: var(--color-accent-soft);
+  color: var(--accent);
 }
 
 .app-header__tab.is-active {
-  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.16);
+  box-shadow: var(--shadow-card-glow);
 }
 
 @media (max-width: 920px) {
   .app-header {
     position: static;
-    padding: 16px;
+    padding: var(--spacing-md);
   }
 
   .app-header__nav {

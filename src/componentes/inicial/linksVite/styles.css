@@ -6,7 +6,7 @@
 
 .links-vite__grupo {
   flex: 1 1 0;
-  padding: 32px;
+  padding: var(--spacing-xl);
 }
 
 .links-vite__grupo--docs {
@@ -16,28 +16,28 @@
 .links-vite__icone {
   width: 22px;
   height: 22px;
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-md);
 }
 
 .links-vite__lista {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-sm);
   padding: 0;
-  margin: 32px 0 0;
+  margin: var(--spacing-xl) 0 0;
   list-style: none;
 }
 
 .links-vite__lista a {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
-  border-radius: 6px;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
   background: var(--social-bg);
   color: var(--text-h);
-  font-size: 16px;
+  font-size: var(--font-size-md);
   text-decoration: none;
-  transition: box-shadow 0.3s;
+  transition: box-shadow 160ms ease;
 }
 
 .links-vite__lista a:hover {
@@ -50,12 +50,6 @@
   height: 18px;
 }
 
-@media (prefers-color-scheme: dark) {
-  #social .links-vite__button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
 @media (max-width: 1024px) {
   .links-vite {
     flex-direction: column;
@@ -63,7 +57,7 @@
   }
 
   .links-vite__grupo {
-    padding: 24px 20px;
+    padding: var(--spacing-lg) var(--spacing-md);
   }
 
   .links-vite__grupo--docs {
@@ -74,11 +68,11 @@
   .links-vite__lista {
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: var(--spacing-lg);
   }
 
   .links-vite__lista li {
-    flex: 1 1 calc(50% - 8px);
+    flex: 1 1 calc(50% - var(--spacing-sm));
   }
 
   .links-vite__lista a {

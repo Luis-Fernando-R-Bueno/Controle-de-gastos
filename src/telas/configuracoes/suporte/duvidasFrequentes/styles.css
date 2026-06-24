@@ -1,20 +1,20 @@
-.faq-config__section {
-  gap: 22px;
+﻿.faq-config__section {
+  gap: var(--spacing-lg);
 }
 
 .faq-config__list {
   display: grid;
-  gap: 16px;
+  gap: var(--spacing-md);
 }
 
 .faq-config__item {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: 16px;
-  padding: 20px;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: #fff;
+  border-radius: var(--radius-md);
+  background: var(--color-card-bg-strong);
 }
 
 .faq-config__icon {
@@ -22,19 +22,19 @@
   width: 46px;
   height: 46px;
   place-items: center;
-  border-radius: 8px;
-  background: #eef4ff;
+  border-radius: var(--radius-md);
+  background: var(--color-accent-soft);
   color: var(--accent);
 }
 
 .faq-config__content {
   display: grid;
-  gap: 8px;
+  gap: var(--spacing-sm);
 }
 
 .faq-config__content > span {
   color: var(--accent);
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   font-weight: 900;
   text-transform: uppercase;
 }
@@ -42,19 +42,19 @@
 .faq-config__content h3 {
   margin: 0;
   color: var(--text-strong);
-  font-size: 18px;
+  font-size: var(--font-size-lg);
 }
 
 .faq-config__content p {
   margin: 0;
   color: var(--text);
-  font-size: 15px;
+  font-size: var(--font-size-md);
   line-height: 1.6;
 }
 
 .faq-config__content small {
   color: var(--text-muted);
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   line-height: 1.55;
 }
 

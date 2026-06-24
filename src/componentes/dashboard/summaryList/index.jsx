@@ -3,6 +3,8 @@ import { formatCurrency } from '../../../utils/formatCurrency'
 import './styles.css'
 
 function SummaryList({ emptyText, items, title, type }) {
+  const defaultSummaryColor = 'var(--accent)'
+
   return (
     <section className="summary-list">
       <div className="section-heading">
@@ -25,7 +27,7 @@ function SummaryList({ emptyText, items, title, type }) {
               <div className="summary-list__track" aria-hidden="true">
                 <span
                   style={{
-                    '--summary-color': item.color ?? '#2563eb',
+                    '--summary-color': item.color ?? defaultSummaryColor,
                     width: `${Math.max(item.percent, 4)}%`,
                   }}
                 />

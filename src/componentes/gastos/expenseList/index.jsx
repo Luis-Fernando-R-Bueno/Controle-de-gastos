@@ -150,7 +150,7 @@ function ExpenseList({ expenses, onDeleteExpense, onEditExpense }) {
                   <td>{formatDate(expense.date)}</td>
                   <td>
                     <span
-                      className="expense-list__badge"
+                      className="category-badge expense-list__badge"
                       style={{ '--category-color': expense.category.cor }}
                     >
                       {expense.category.nome}

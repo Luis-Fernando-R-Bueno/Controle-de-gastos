@@ -28,7 +28,8 @@ function DashboardCards({ dashboard }) {
         ? formatCurrency(dashboard.topCategory.total)
         : 'Cadastre um gasto para ver',
       Icon: Tags,
-      tone: 'amber',
+      categoryColor: dashboard.topCategory?.color,
+      tone: dashboard.topCategory ? 'category' : 'amber',
     },
     {
       id: 'average',
@@ -42,14 +43,24 @@ function DashboardCards({ dashboard }) {
 
   return (
     <section className="dashboard-cards" aria-label="Resumo financeiro">
-      {cards.map(({ id, label, value, detail, Icon, tone }) => (
-        <article className={`dashboard-card dashboard-card--${tone}`} key={id}>
+      {cards.map(({ id, label, value, detail, Icon, tone, categoryColor }) => (
+        <article
+          className={`dashboard-card dashboard-card--${tone}`}
+          key={id}
+          style={categoryColor ? { '--category-color': categoryColor } : undefined}
+        >
           <div className="dashboard-card__icon">
             <Icon size={20} aria-hidden="true" />
           </div>
           <div>
             <span>{label}</span>
-            <strong>{value}</strong>
+            {categoryColor ? (
+              <strong className="category-badge dashboard-card__category">
+                {value}
+              </strong>
+            ) : (
+              <strong>{value}</strong>
+            )}
             <small>{detail}</small>
           </div>
         </article>

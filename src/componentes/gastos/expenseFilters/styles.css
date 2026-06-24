@@ -1,25 +1,26 @@
-.expense-filters {
+﻿.expense-filters {
   display: grid;
   grid-template-columns: minmax(220px, 1fr) minmax(145px, 180px) minmax(120px, 140px) auto;
   align-items: end;
-  gap: 12px;
-  padding: 16px;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: var(--surface);
   box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(18px);
 }
 
 .expense-filters label {
   display: grid;
-  gap: 7px;
+  gap: var(--spacing-sm);
   min-width: 0;
   text-align: left;
 }
 
 .expense-filters label span {
   color: var(--text-muted);
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   font-weight: 800;
 }
 
@@ -27,18 +28,18 @@
   width: 100%;
   min-height: 42px;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: #fff;
+  border-radius: var(--radius-md);
+  background: var(--color-input-bg);
   color: var(--text);
   font: inherit;
-  font-size: 14px;
+  font-size: var(--font-size-md);
   outline: 0;
   padding: 0 12px;
 }
 
 .expense-filters select:focus {
-  border-color: #93c5fd;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  border-color: var(--color-accent-border);
+  box-shadow: var(--shadow-focus);
 }
 
 @media (max-width: 1060px) {

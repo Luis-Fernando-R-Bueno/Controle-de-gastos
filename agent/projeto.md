@@ -559,6 +559,87 @@ Validações executadas:
 - `npm.cmd run lint`
 - `npm.cmd run build`
 
+## Design System Visual - 24/06/2026
+
+Alterações realizadas:
+
+- Criados os arquivos `src/styles/tokens.css` e `src/styles/base.css`.
+- `src/estilos/global.css` passou a importar os estilos globais centralizados.
+- Tokens de cores, espaçamento, tipografia, bordas e sombras foram definidos em
+  variáveis CSS.
+- Aplicado tema fixo azul marinho com padrão geométrico em linhas e overlay
+  escuro para preservar legibilidade.
+- Cards, botões, inputs, tabelas, cabeçalho, menu, rodapé, modal e telas de
+  configurações foram alinhados ao padrão glass com `backdrop-filter`, bordas
+  suaves e cores por tokens.
+- Estilos antigos remanescentes da tela padrão do Vite também foram alinhados
+  aos aliases do Design System.
+- Nenhuma regra de negócio foi alterada.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Padronização das Cores de Categorias - 24/06/2026
+
+Alterações realizadas:
+
+- Criado o utilitário `src/utils/categoryColors.js` com o mapa central
+  `categoryColors` e a função `getCategoryColor(nome)`.
+- Tokens de cores de categoria adicionados em `src/styles/tokens.css`.
+- Categorias padrão e categorias já salvas passam a carregar cores consistentes
+  a partir do nome da categoria.
+- Novas categorias recebem cor determinística por nome, evitando cores
+  aleatórias espalhadas pelo código.
+- Badges de categoria passaram a usar fundo translúcido, texto sólido e borda
+  sutil com a própria cor da categoria.
+- Indicadores do dashboard, lista de gastos e tela de categorias foram
+  alinhados ao mesmo padrão visual.
+- Nenhuma regra de negócio foi alterada.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Fundo Visual com Imagem - 24/06/2026
+
+Alterações realizadas:
+
+- O fundo global do sistema passou a usar a imagem `public/fundo.png`.
+- O token `--app-background-image` foi adicionado ao Design System para
+  centralizar a referência da imagem.
+- O fundo mantém overlay escuro sobre a imagem para preservar a legibilidade dos
+  cards, textos e controles.
+- `public/sw.js` foi atualizado para incluir `fundo.png` no cache do PWA.
+- A versão do cache do service worker foi incrementada para forçar atualização
+  do arquivo em instalações existentes.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Rodapé Completo e Fundo Mais Legível - 24/06/2026
+
+Alterações realizadas:
+
+- Rodapé refeito com blocos de resumo do sistema, recursos, projeto e contatos.
+- Informações do rodapé passaram a usar painéis sólidos, sem aparência
+  translúcida.
+- Tokens de texto e superfícies foram ajustados para reduzir opacidade visual e
+  melhorar contraste.
+- O fundo global deixou de aplicar overlay escuro sobre `public/fundo.png`,
+  mantendo as linhas do padrão visual brancas.
+- Cards, inputs e superfícies passam a usar cores sólidas do Design System,
+  preservando contraste sobre o fundo com imagem.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
 ## Ajuste da Seta de Voltar - 22/06/2026
 
 Alterações realizadas:

@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
-  CATEGORY_COLORS,
   loadCategories,
   loadExpenses,
   saveCategories,
   saveExpenses,
 } from '../servicos/storageService'
+import { getCategoryColor } from '../utils/categoryColors'
 import {
   compareExpensesByDate,
   getCurrentMonthKey,
@@ -205,7 +205,7 @@ export function useControleGastos(dashboardMonthKey = getCurrentMonthKey()) {
           category: categoryMap.get(expense.categoryId) ?? {
             id: 'sem-categoria',
             nome: 'Sem categoria',
-            cor: '#64748b',
+            cor: getCategoryColor('Sem categoria'),
             ativa: false,
           },
         }))
@@ -357,7 +357,7 @@ export function useControleGastos(dashboardMonthKey = getCurrentMonthKey()) {
       {
         id: createId('categoria'),
         nome: cleanName,
-        cor: CATEGORY_COLORS[currentCategories.length % CATEGORY_COLORS.length],
+        cor: getCategoryColor(cleanName, currentCategories.length),
         ativa: true,
         createdAt: new Date().toISOString(),
       },
@@ -375,7 +375,9 @@ export function useControleGastos(dashboardMonthKey = getCurrentMonthKey()) {
 
     setCategories((currentCategories) =>
       currentCategories.map((category) =>
-        category.id === categoryId ? { ...category, nome: cleanName } : category,
+        category.id === categoryId
+          ? { ...category, nome: cleanName, cor: getCategoryColor(cleanName) }
+          : category,
       ),
     )
 

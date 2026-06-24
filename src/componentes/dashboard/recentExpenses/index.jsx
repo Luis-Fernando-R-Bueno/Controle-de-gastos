@@ -25,8 +25,14 @@ function RecentExpenses({ expenses }) {
               />
               <div className="recent-expenses__main">
                 <strong>{expense.description || expense.category.nome}</strong>
-                <span>
-                  {formatDate(expense.date)} - {expense.category.nome}
+                <span className="recent-expenses__meta">
+                  {formatDate(expense.date)}
+                  <span
+                    className="category-badge recent-expenses__badge"
+                    style={{ '--category-color': expense.category.cor }}
+                  >
+                    {expense.category.nome}
+                  </span>
                 </span>
               </div>
               <b>{formatCurrency(expense.value)}</b>

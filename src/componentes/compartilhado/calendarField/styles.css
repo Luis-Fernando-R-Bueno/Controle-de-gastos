@@ -1,14 +1,14 @@
-.calendar-field {
+﻿.calendar-field {
   position: relative;
   display: grid;
-  gap: 7px;
+  gap: var(--spacing-sm);
   min-width: 0;
   text-align: left;
 }
 
 .calendar-field__label {
   color: var(--text-muted);
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   font-weight: 800;
 }
 
@@ -16,16 +16,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: var(--spacing-sm);
   width: 100%;
   min-height: 42px;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: #fff;
+  border-radius: var(--radius-md);
+  background: var(--color-input-bg);
   color: var(--text);
   cursor: pointer;
   font: inherit;
-  font-size: 14px;
+  font-size: var(--font-size-md);
   letter-spacing: 0;
   outline: 0;
   padding: 0 12px;
@@ -48,8 +48,8 @@
 
 .calendar-field__trigger:hover,
 .calendar-field__trigger:focus {
-  border-color: #93c5fd;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  border-color: var(--color-accent-border);
+  box-shadow: var(--shadow-focus);
 }
 
 .calendar-field__trigger--compact {
@@ -66,11 +66,12 @@
   left: 0;
   z-index: 30;
   width: 306px;
-  padding: 14px;
-  border: 1px solid #c7d7ea;
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.16);
+  padding: var(--spacing-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-medium);
+  backdrop-filter: blur(18px);
 }
 
 .calendar-field__popover--month {
@@ -81,13 +82,13 @@
   display: grid;
   grid-template-columns: 36px minmax(0, 1fr) 36px;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
 }
 
 .calendar-field__header strong {
   color: var(--text-strong);
-  font-size: 14px;
+  font-size: var(--font-size-md);
   font-weight: 800;
   text-align: center;
 }
@@ -98,15 +99,15 @@
   height: 36px;
   place-items: center;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: #f8fafc;
+  border-radius: var(--radius-md);
+  background: var(--color-input-bg);
   color: var(--text-muted);
   cursor: pointer;
 }
 
 .calendar-field__header button:hover {
-  border-color: #bfdbfe;
-  background: #eef4ff;
+  border-color: var(--color-accent-border);
+  background: var(--color-accent-soft);
   color: var(--accent);
 }
 
@@ -114,16 +115,16 @@
 .calendar-field__days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
+  gap: var(--spacing-xs);
 }
 
 .calendar-field__weekdays {
-  margin-bottom: 6px;
+  margin-bottom: var(--spacing-sm);
 }
 
 .calendar-field__weekdays span {
   color: var(--text-muted);
-  font-size: 11px;
+  font-size: var(--font-size-xs);
   font-weight: 800;
   text-align: center;
 }
@@ -133,12 +134,12 @@
   display: grid;
   place-items: center;
   border: 1px solid transparent;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: transparent;
   color: var(--text);
   cursor: pointer;
   font: inherit;
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   font-weight: 800;
 }
 
@@ -149,32 +150,32 @@
 
 .calendar-field__day:hover,
 .calendar-field__months button:hover {
-  border-color: #bfdbfe;
-  background: #eef4ff;
+  border-color: var(--color-accent-border);
+  background: var(--color-accent-soft);
   color: var(--accent);
 }
 
 .calendar-field__day.is-muted {
-  color: #b4bfcd;
+  color: var(--text-muted);
 }
 
 .calendar-field__day.is-today {
-  border-color: #b7d7c8;
-  color: #0f766e;
+  border-color: var(--color-success-border);
+  color: var(--color-success);
 }
 
 .calendar-field__day.is-selected,
 .calendar-field__months button.is-selected {
   border-color: var(--accent);
   background: var(--accent);
-  color: #fff;
-  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.2);
+  color: var(--color-on-accent);
+  box-shadow: var(--shadow-card-glow);
 }
 
 .calendar-field__months {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  gap: var(--spacing-sm);
 }
 
 .calendar-field__months button {

@@ -1,12 +1,12 @@
-.expense-data-actions {
+﻿.expense-data-actions {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: var(--spacing-md);
   min-width: 0;
-  padding: 16px;
+  padding: var(--spacing-md);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: var(--surface);
   box-shadow: var(--shadow-sm);
 }
@@ -14,13 +14,13 @@
 .expense-data-actions__buttons {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--spacing-sm);
   flex-wrap: wrap;
 }
 
 .expense-data-actions__feedback {
   color: var(--text-muted);
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   font-weight: 800;
   text-align: right;
 }

@@ -1,14 +1,15 @@
-.expense-list {
+﻿.expense-list {
   min-width: 0;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: var(--surface);
   box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(18px);
   text-align: left;
 }
 
 .expense-list--empty {
-  padding: 24px;
+  padding: var(--spacing-lg);
 }
 
 .expense-list__table-wrap {
@@ -23,14 +24,14 @@
 
 .expense-list__table th,
 .expense-list__table td {
-  padding: 14px 18px;
+  padding: var(--spacing-md) calc(var(--spacing-lg) - var(--spacing-xs));
   border-top: 1px solid var(--border-soft);
   vertical-align: middle;
 }
 
 .expense-list__table th {
   color: var(--text-muted);
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   font-weight: 800;
   text-align: left;
   text-transform: uppercase;
@@ -39,10 +40,10 @@
 .expense-list__sort-button {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--spacing-sm);
   min-height: 30px;
   border: 0;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   background: transparent;
   color: inherit;
   cursor: pointer;
@@ -69,7 +70,7 @@
 
 .expense-list__table td {
   color: var(--text);
-  font-size: 14px;
+  font-size: var(--font-size-md);
 }
 
 .expense-list__table td strong {
@@ -77,21 +78,11 @@
 }
 
 .expense-list__badge {
-  display: inline-flex;
-  align-items: center;
   max-width: 220px;
-  min-height: 28px;
-  padding: 0 10px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--category-color) 14%, #fff);
-  color: var(--category-color);
-  font-size: 13px;
-  font-weight: 800;
-  white-space: nowrap;
 }
 
 .expense-list__actions {
   display: flex;
   justify-content: flex-end;
-  gap: 8px;
+  gap: var(--spacing-sm);
 }

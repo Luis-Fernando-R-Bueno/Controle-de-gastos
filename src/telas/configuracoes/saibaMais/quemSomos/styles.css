@@ -1,27 +1,28 @@
-.quem-somos__section {
+﻿.quem-somos__section {
   display: grid;
-  gap: 26px;
+  gap: calc(var(--spacing-lg) + var(--spacing-xs));
 }
 
 .quem-somos__intro {
   display: grid;
-  gap: 6px;
-  padding: 18px 20px;
+  gap: var(--spacing-sm);
+  padding: calc(var(--spacing-lg) - var(--spacing-xs)) var(--spacing-lg);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: #fff;
+  border-radius: var(--radius-md);
+  background: var(--color-card-bg-strong);
   box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(18px);
 }
 
 .quem-somos__intro strong {
   color: var(--text-strong);
-  font-size: 18px;
+  font-size: var(--font-size-lg);
   font-weight: 800;
 }
 
 .quem-somos__intro span {
   color: var(--text-muted);
-  font-size: 14px;
+  font-size: var(--font-size-md);
 }
 
 .quem-somos__linha {
@@ -29,7 +30,7 @@
   --linha-cursor-raio: 10px;
   position: relative;
   display: grid;
-  gap: 24px;
+  gap: var(--spacing-lg);
   width: 100%;
   max-width: 980px;
   margin: 0 auto;
@@ -41,7 +42,7 @@
   bottom: 14px;
   left: 50%;
   width: 2px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: linear-gradient(
     180deg,
     transparent,
@@ -63,11 +64,9 @@
     calc(var(--linha-progresso) - 14px - var(--linha-cursor-raio)),
     calc(100% - 42px)
   );
-  border-radius: 999px;
-  background: linear-gradient(180deg, rgba(37, 99, 235, 0), #93c5fd, var(--accent));
-  box-shadow:
-    0 0 12px rgba(37, 99, 235, 0.32),
-    0 0 28px rgba(37, 99, 235, 0.2);
+  border-radius: var(--radius-pill);
+  background: linear-gradient(180deg, transparent, var(--color-accent-strong), var(--accent));
+  box-shadow: var(--shadow-card-glow);
   content: '';
   transform: translateX(-50%);
 }
@@ -79,12 +78,10 @@
   z-index: 3;
   width: 20px;
   height: 20px;
-  border: 3px solid #fff;
-  border-radius: 50%;
+  border: 3px solid var(--color-text-primary);
+  border-radius: var(--radius-round);
   background: var(--accent);
-  box-shadow:
-    0 0 0 6px rgba(37, 99, 235, 0.12),
-    0 12px 22px rgba(37, 99, 235, 0.22);
+  box-shadow: var(--shadow-card-glow);
   pointer-events: none;
   transform: translate(-50%, -50%);
 }
@@ -93,7 +90,7 @@
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 64px;
+  gap: var(--spacing-3xl);
   align-items: flex-start;
   min-height: 122px;
 }
@@ -107,23 +104,22 @@
   width: 36px;
   height: 36px;
   place-items: center;
-  border: 1px solid #bfdbfe;
-  border-radius: 50%;
+  border: 1px solid var(--color-accent-border);
+  border-radius: var(--radius-round);
   color: var(--accent);
-  background: #fff;
-  box-shadow:
-    0 0 0 6px var(--bg),
-    0 12px 24px rgba(15, 23, 42, 0.08);
+  background: var(--color-card-bg-strong);
+  box-shadow: var(--shadow-soft);
   transform: translateX(-50%);
 }
 
 .quem-somos__card {
   grid-column: 1;
-  padding: 18px 20px;
+  padding: calc(var(--spacing-lg) - var(--spacing-xs)) var(--spacing-lg);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: #fff;
+  border-radius: var(--radius-md);
+  background: var(--color-card-bg-strong);
   box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(18px);
 }
 
 .quem-somos__marco--direita .quem-somos__card {
@@ -132,9 +128,9 @@
 
 .quem-somos__periodo {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: var(--spacing-sm);
   color: var(--accent);
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   font-weight: 900;
   text-transform: uppercase;
 }
@@ -142,19 +138,19 @@
 .quem-somos__card h2 {
   margin: 0;
   color: var(--text-strong);
-  font-size: 18px;
+  font-size: var(--font-size-lg);
 }
 
 .quem-somos__card p {
-  margin: 8px 0 0;
+  margin: var(--spacing-sm) 0 0;
   color: var(--text-muted);
-  font-size: 14px;
+  font-size: var(--font-size-md);
   line-height: 1.6;
 }
 
 @media (max-width: 680px) {
   .quem-somos__linha {
-    gap: 18px;
+    gap: var(--spacing-lg);
     padding-left: 30px;
   }
 

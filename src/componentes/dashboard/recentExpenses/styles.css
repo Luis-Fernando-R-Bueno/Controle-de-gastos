@@ -1,16 +1,17 @@
-.recent-expenses {
+﻿.recent-expenses {
   min-width: 0;
-  padding: 22px;
+  padding: var(--spacing-lg);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: var(--surface);
   box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(18px);
 }
 
 .recent-expenses__list {
   display: grid;
-  gap: 4px;
-  margin: 18px 0 0;
+  gap: var(--spacing-xs);
+  margin: var(--spacing-lg) 0 0;
   padding: 0;
   list-style: none;
 }
@@ -19,9 +20,9 @@
   display: grid;
   grid-template-columns: 12px minmax(0, 1fr) auto;
   align-items: center;
-  gap: 12px;
+  gap: var(--spacing-md);
   min-height: 58px;
-  padding: 10px 0;
+  padding: var(--spacing-sm) 0;
   border-bottom: 1px solid var(--border-soft);
   text-align: left;
 }
@@ -34,28 +35,41 @@
   min-width: 0;
 }
 
-.recent-expenses__main strong,
-.recent-expenses__main span {
+.recent-expenses__main > strong,
+.recent-expenses__main > span {
   display: block;
 }
 
-.recent-expenses__main strong {
+.recent-expenses__main > strong {
   overflow: hidden;
   color: var(--text-strong);
-  font-size: 14px;
+  font-size: var(--font-size-md);
   font-weight: 800;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.recent-expenses__main span {
+.recent-expenses__main > span {
   color: var(--text-muted);
-  font-size: 13px;
+  font-size: var(--font-size-sm);
+}
+
+.recent-expenses__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.recent-expenses__badge {
+  min-height: 24px;
+  padding-inline: var(--spacing-sm);
+  font-size: var(--font-size-xs);
 }
 
 .recent-expenses__item b {
   color: var(--text-strong);
-  font-size: 14px;
+  font-size: var(--font-size-md);
 }
 
 @media (max-width: 560px) {

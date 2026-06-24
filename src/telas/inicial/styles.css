@@ -1,21 +1,19 @@
-.pagina-inicial {
+﻿.pagina-inicial {
   min-height: 100svh;
-  background:
-    linear-gradient(180deg, rgba(232, 245, 238, 0.62), rgba(248, 250, 252, 0) 340px),
-    var(--bg);
+  background: transparent;
 }
 
 .pagina-inicial__main {
   display: grid;
-  gap: 22px;
+  gap: var(--spacing-lg);
   width: min(100%, 1240px);
   margin: 0 auto;
-  padding: 30px 32px 44px;
+  padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-2xl);
 }
 
 .pagina-inicial__view {
   display: grid;
-  gap: 18px;
+  gap: var(--spacing-lg);
 }
 
 .pagina-inicial__dashboard-toolbar {
@@ -29,22 +27,20 @@
 }
 
 .pagina-inicial__dashboard-toolbar .calendar-field__label {
-  color: #0f766e;
-  font-size: 14px;
+  color: var(--accent);
+  font-size: var(--font-size-md);
   text-align: center;
   text-transform: uppercase;
 }
 
 .pagina-inicial__dashboard-toolbar .calendar-field__trigger {
   min-height: 50px;
-  border-color: #93c5fd;
-  background: #fff;
+  border-color: var(--color-accent-border);
+  background: var(--color-card-bg-strong);
   color: var(--text-strong);
-  font-size: 16px;
+  font-size: var(--font-size-md);
   font-weight: 800;
-  box-shadow:
-    0 12px 30px rgba(37, 99, 235, 0.13),
-    0 0 0 4px rgba(37, 99, 235, 0.08);
+  box-shadow: var(--shadow-card-glow);
 }
 
 .pagina-inicial__dashboard-toolbar .calendar-field__trigger svg {
@@ -55,19 +51,19 @@
 .pagina-inicial__summary-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  gap: var(--spacing-lg);
 }
 
 .pagina-inicial__expense-layout {
   display: grid;
   grid-template-columns: minmax(300px, 420px) minmax(0, 1fr);
-  gap: 18px;
+  gap: var(--spacing-lg);
   align-items: start;
 }
 
 .pagina-inicial__expense-list {
   display: grid;
-  gap: 14px;
+  gap: var(--spacing-md);
   min-width: 0;
 }
 
@@ -80,7 +76,7 @@
 
 @media (max-width: 720px) {
   .pagina-inicial__main {
-    padding: 22px 16px 34px;
+    padding: var(--spacing-lg) var(--spacing-md) calc(var(--spacing-xl) + var(--spacing-xs));
   }
 
   .pagina-inicial__dashboard-toolbar {

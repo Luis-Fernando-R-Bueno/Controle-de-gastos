@@ -1,14 +1,14 @@
-.historico {
+﻿.historico {
   display: grid;
-  gap: 18px;
+  gap: var(--spacing-lg);
 }
 
 .historico__header {
   display: grid;
-  gap: 8px;
-  padding: 22px;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: var(--surface);
   box-shadow: var(--shadow-sm);
   text-align: left;
@@ -16,12 +16,12 @@
 
 .historico__header span {
   color: var(--text-muted);
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   font-weight: 800;
 }
 
 .historico__header p {
   max-width: 700px;
   color: var(--text-muted);
-  font-size: 14px;
+  font-size: var(--font-size-md);
 }
