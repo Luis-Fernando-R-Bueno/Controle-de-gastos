@@ -4,6 +4,7 @@ const APP_SHELL_URLS = [
   '/index.html',
   '/manifest.webmanifest',
   '/favicon.svg',
+  '/logo.svg',
   '/icons.svg',
   '/icon-192.png',
   '/icon-512.png',

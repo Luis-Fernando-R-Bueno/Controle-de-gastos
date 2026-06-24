@@ -21,7 +21,7 @@ const INITIAL_FILTERS = {
   monthKey: '',
 }
 
-function Inicial() {
+function Inicial({ onLogout }) {
   const [dashboardMonthKey, setDashboardMonthKey] = useState(getCurrentMonthKey)
   const {
     addCategory,
@@ -100,6 +100,7 @@ function Inicial() {
       <AppHeader
         activeView={activeView}
         onChangeView={setActiveView}
+        onLogout={onLogout}
       />
 
       <main className="pagina-inicial__main">

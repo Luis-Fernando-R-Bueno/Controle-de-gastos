@@ -377,6 +377,34 @@ Validações executadas:
 - `npm.cmd run lint`
 - `npm.cmd run build`
 
+## Tela de Login Local - 24/06/2026
+
+Alterações realizadas:
+
+- Criada tela de login minimalista antes do acesso ao sistema.
+- Credenciais locais configuradas para o usuário `luis.bueno`.
+- Sessão salva em `localStorage` para o PWA abrir direto após login.
+- Adicionado botão de sair no menu principal.
+- Autenticação é apenas uma trava local do aplicativo, sem back-end.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Ajuste Visual do Login - 24/06/2026
+
+Alterações realizadas:
+
+- Mensagem de erro do login movida para cima do campo `Usuário`.
+- Ícone do cadeado no cabeçalho substituído por logo circular azul com cifrão.
+- Cabeçalho do formulário centralizado para destacar a marca.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
 ## Ajuste da Seta de Voltar - 22/06/2026
 
 Alterações realizadas:
