@@ -1,4 +1,4 @@
-import { LockKeyhole, UserRound } from 'lucide-react'
+import { Eye, EyeOff, LockKeyhole, UserRound } from 'lucide-react'
 import { useState } from 'react'
 import './styles.css'
 
@@ -10,6 +10,7 @@ const INITIAL_FORM = {
 function Login({ onLogin }) {
   const [formData, setFormData] = useState(INITIAL_FORM)
   const [errorMessage, setErrorMessage] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
 
   function updateField(field, value) {
     setFormData((currentData) => ({
@@ -68,11 +69,24 @@ function Login({ onLogin }) {
           <div className="login-card__field">
             <LockKeyhole size={18} aria-hidden="true" />
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               value={formData.password}
               onChange={(event) => updateField('password', event.target.value)}
               autoComplete="current-password"
             />
+            <button
+              className="login-card__toggle-password"
+              type="button"
+              onClick={() => setShowPassword((currentValue) => !currentValue)}
+              aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
+              title={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
+            >
+              {showPassword ? (
+                <EyeOff size={18} aria-hidden="true" />
+              ) : (
+                <Eye size={18} aria-hidden="true" />
+              )}
+            </button>
           </div>
         </label>
 

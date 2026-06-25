@@ -640,6 +640,82 @@ Validações executadas:
 - `npm.cmd run lint`
 - `npm.cmd run build`
 
+## Ajustes de Login, Rodapé e Salário - 25/06/2026
+
+Alterações realizadas:
+
+- Tela de login passou a usar fundo sólido do Design System, sem as linhas da
+  imagem `fundo.png` atrás do formulário.
+- Campo de senha recebeu botão para mostrar ou ocultar a senha digitada.
+- Campos do login receberam correção visual para autofill do navegador.
+- Cabeçalho `Olá, Luis` nas configurações ganhou painel sólido, borda de
+  destaque e maior contraste.
+- Rodapé simplificado para exibir apenas contatos, dentro de largura máxima
+  controlada.
+- Tela `Perfil` recebeu campo editável de `Salário mensal`, salvo em
+  `localStorage`.
+- Card de `Lançamentos` no painel passa a mostrar `Sobra do salário` quando há
+  salário cadastrado, calculando salário mensal menos total gasto no mês
+  selecionado.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Ajustes Visuais de Fundo, Configurações e Perfil - 25/06/2026
+
+Alterações realizadas:
+
+- Fundo global do sistema igualado ao fundo sólido da tela de login, removendo
+  o uso visual da imagem `fundo.png` nas telas internas.
+- Service worker atualizado para `controle-gastos-pwa-v4`, removendo
+  `fundo.png` do cache inicial do PWA.
+- Texto `Olá, Luis` movido para o cabeçalho da lista principal de
+  configurações, substituindo `Opções` e `O que deseja configurar?`.
+- Tela `Perfil` deixou de exibir `Conta local` e o usuário `luis.bueno` na área
+  de identidade.
+- Botões de foto do perfil receberam tamanho menor e mais proporcional.
+- Bloco informativo de resumo do perfil foi removido.
+- Rodapé passou a exibir apenas os contatos centralizados, sem título visível
+  `Contato`, sem caixa e com linha superior de separação.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Edição Recolhida do Salário - 25/06/2026
+
+Alterações realizadas:
+
+- Campo de edição do salário mensal deixou de ficar aberto por padrão na tela
+  `Perfil`.
+- Valor do salário passa a aparecer em modo leitura com botão de lápis à
+  direita.
+- Input e botão `Salvar salário` aparecem apenas após clicar no ícone de
+  edição.
+- Ao salvar, o card volta automaticamente para o modo leitura.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Ajuste do Bloco de Foto do Perfil - 25/06/2026
+
+Alterações realizadas:
+
+- Botão `Alterar foto` removido da tela `Perfil`.
+- Alteração da foto permanece disponível pelo clique direto no avatar.
+- Espaçamento entre a foto e o nome foi reduzido.
+- Conteúdo do bloco de perfil foi centralizado verticalmente no painel.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
 ## Ajuste da Seta de Voltar - 22/06/2026
 
 Alterações realizadas:

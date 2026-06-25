@@ -30,6 +30,20 @@ const INITIAL_FILTERS = {
   monthKey: '',
 }
 
+const MONTHLY_SALARY_KEY = 'controle-gastos:salario-mensal'
+
+function loadMonthlySalary() {
+  try {
+    return Number(localStorage.getItem(MONTHLY_SALARY_KEY)) || 0
+  } catch {
+    return 0
+  }
+}
+
+function saveMonthlySalary(value) {
+  localStorage.setItem(MONTHLY_SALARY_KEY, String(Number(value) || 0))
+}
+
 function Inicial({ onLogout, session }) {
   const [dashboardMonthKey, setDashboardMonthKey] = useState(getCurrentMonthKey)
   const {
@@ -53,11 +67,26 @@ function Inicial({ onLogout, session }) {
   const [filters, setFilters] = useState(INITIAL_FILTERS)
   const [editingExpense, setEditingExpense] = useState(null)
   const [formFocusKey, setFormFocusKey] = useState(0)
+  const [monthlySalary, setMonthlySalary] = useState(loadMonthlySalary)
 
   const filteredExpenses = useMemo(
     () => filterExpenses(filters),
     [filterExpenses, filters],
   )
+
+  const dashboardWithSalary = useMemo(
+    () => ({
+      ...dashboard,
+      monthlySalary,
+      salaryRemaining: monthlySalary - dashboard.totalMonth,
+    }),
+    [dashboard, monthlySalary],
+  )
+
+  function handleUpdateMonthlySalary(value) {
+    setMonthlySalary(value)
+    saveMonthlySalary(value)
+  }
 
   function handleFilterChange(field, value) {
     setFilters((currentFilters) => ({
@@ -115,7 +144,14 @@ function Inicial({ onLogout, session }) {
   function renderSettingsContent() {
     switch (settingsView) {
       case 'perfil':
-        return <ConfiguracoesPerfil onBack={closeSettingsSubpage} session={session} />
+        return (
+          <ConfiguracoesPerfil
+            monthlySalary={monthlySalary}
+            onBack={closeSettingsSubpage}
+            onUpdateMonthlySalary={handleUpdateMonthlySalary}
+            session={session}
+          />
+        )
 
       case 'categorias':
         return (
@@ -204,7 +240,7 @@ function Inicial({ onLogout, session }) {
               />
             </div>
 
-            <DashboardCards dashboard={dashboard} />
+            <DashboardCards dashboard={dashboardWithSalary} />
 
             <RecentExpenses expenses={dashboard.recentExpenses} />
 

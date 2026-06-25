@@ -16,16 +16,6 @@
   min-height: 36px;
 }
 
-.configuracoes__boas-vindas {
-  display: flex;
-  align-items: center;
-  min-height: 72px;
-}
-
-.configuracoes__boas-vindas h1 {
-  font-size: clamp(34px, 6vw, 50px);
-}
-
 .configuracoes__section {
   display: grid;
   gap: var(--spacing-lg);
@@ -36,6 +26,11 @@
   background: var(--surface);
   box-shadow: var(--shadow-sm);
   backdrop-filter: blur(18px);
+}
+
+.configuracoes__section > .section-heading h1 {
+  font-size: clamp(34px, 6vw, 50px);
+  line-height: 1;
 }
 
 .configuracoes__cards {

@@ -23,17 +23,13 @@ body {
   min-height: 100svh;
   margin: 0;
   background:
-    var(--app-background-image),
-    radial-gradient(circle at top left, var(--color-bg-secondary), var(--color-bg-primary) 58%);
+    radial-gradient(circle at top, var(--color-bg-secondary), transparent 46%),
+    var(--color-bg-primary);
   background-attachment: fixed;
   background-color: var(--bg);
-  background-position:
-    center,
-    center;
+  background-position: center;
   background-repeat: no-repeat;
-  background-size:
-    cover,
-    auto;
+  background-size: auto;
 }
 
 button,

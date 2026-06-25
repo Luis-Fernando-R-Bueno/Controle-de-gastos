@@ -1,9 +1,11 @@
-﻿.login-page {
+.login-page {
   display: grid;
   min-height: 100svh;
   place-items: center;
   padding: var(--spacing-lg);
-  background: transparent;
+  background:
+    radial-gradient(circle at top, var(--color-bg-secondary), transparent 46%),
+    var(--color-bg-primary);
 }
 
 .login-card {
@@ -17,7 +19,6 @@
   border-radius: var(--radius-md);
   background: var(--surface);
   box-shadow: var(--shadow-medium);
-  backdrop-filter: blur(18px);
   text-align: left;
 }
 
@@ -75,7 +76,7 @@
   align-items: center;
   gap: var(--spacing-sm);
   min-height: 44px;
-  padding: 0 12px;
+  padding: 0 var(--spacing-md);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   background: var(--color-input-bg);
@@ -92,10 +93,39 @@
   min-width: 0;
   border: 0;
   background: transparent;
+  caret-color: var(--text);
   color: var(--text);
   font: inherit;
   font-size: var(--font-size-md);
   outline: 0;
+}
+
+.login-card__field input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--color-input-bg) inset;
+  -webkit-text-fill-color: var(--text);
+}
+
+.login-card__toggle-password {
+  display: inline-grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.login-card__toggle-password:hover,
+.login-card__toggle-password:focus-visible {
+  background: var(--color-card-bg-strong);
+  color: var(--accent);
 }
 
 .login-card__error {

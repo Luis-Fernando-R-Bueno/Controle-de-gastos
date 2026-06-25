@@ -15,8 +15,9 @@
 
 .perfil-config__photo-card {
   display: grid;
+  align-content: center;
   justify-items: center;
-  gap: var(--spacing-md);
+  gap: var(--spacing-sm);
   padding: var(--spacing-lg);
   text-align: center;
 }
@@ -59,6 +60,82 @@
   font-weight: 800;
 }
 
+.perfil-config__salary-card {
+  display: grid;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  background: var(--color-card-bg-strong);
+}
+
+.perfil-config__salary-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.perfil-config__salary-title {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.perfil-config__salary-title svg {
+  flex: 0 0 auto;
+  color: var(--accent);
+}
+
+.perfil-config__salary-title div,
+.perfil-config__salary-card label {
+  display: grid;
+  gap: var(--spacing-3xs);
+}
+
+.perfil-config__salary-title span,
+.perfil-config__salary-card label span {
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.perfil-config__salary-title strong {
+  color: var(--text-strong);
+  font-size: var(--font-size-lg);
+  font-weight: 800;
+}
+
+.perfil-config__salary-edit {
+  flex: 0 0 auto;
+}
+
+.perfil-config__salary-card input {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--color-input-bg);
+  color: var(--text);
+  font: inherit;
+  font-size: var(--font-size-md);
+  outline: 0;
+  padding: 0 var(--spacing-md);
+}
+
+.perfil-config__salary-card input:focus {
+  border-color: var(--color-accent-border);
+  box-shadow: var(--shadow-focus);
+}
+
+.perfil-config__salary-feedback {
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+}
+
 .perfil-config__photo {
   display: grid;
   width: 116px;
@@ -81,14 +158,7 @@
 
 .perfil-config__identity {
   display: grid;
-  gap: var(--spacing-xs);
-}
-
-.perfil-config__identity span {
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-  font-weight: 800;
-  text-transform: uppercase;
+  gap: var(--spacing-3xs);
 }
 
 .perfil-config__identity strong {
@@ -97,17 +167,17 @@
   font-weight: 800;
 }
 
-.perfil-config__identity small {
-  color: var(--text-muted);
-  font-size: var(--font-size-md);
-  font-weight: 700;
-}
-
 .perfil-config__actions {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--spacing-sm);
+}
+
+.perfil-config__actions .button {
+  min-height: 40px;
+  padding: 0 var(--spacing-md);
+  font-size: var(--font-size-sm);
 }
 
 .perfil-config__input {

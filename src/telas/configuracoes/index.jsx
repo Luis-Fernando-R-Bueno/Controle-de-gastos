@@ -59,15 +59,10 @@ function Configuracoes({
 
   return (
     <section className="configuracoes" aria-label="Configurações">
-      <div className="configuracoes__boas-vindas">
-        <h1>Olá, Luis</h1>
-      </div>
-
       <section className="configuracoes__section">
         <div className="section-heading">
           <div>
-            <span>Opções</span>
-            <h2>O que deseja configurar?</h2>
+            <h1>Olá, Luis</h1>
           </div>
         </div>
 

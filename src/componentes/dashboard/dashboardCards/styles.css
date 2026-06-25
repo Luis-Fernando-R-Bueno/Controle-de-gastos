@@ -72,6 +72,11 @@
   color: var(--color-success);
 }
 
+.dashboard-card--danger .dashboard-card__icon {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
 .dashboard-card--amber .dashboard-card__icon {
   background: var(--color-card-bg-strong);
   color: var(--color-warning);

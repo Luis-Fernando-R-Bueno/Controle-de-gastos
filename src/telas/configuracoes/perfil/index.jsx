@@ -1,13 +1,15 @@
 import {
   ArrowLeft,
   CalendarClock,
+  CircleDollarSign,
   Database,
-  ImagePlus,
+  Pencil,
   ShieldCheck,
   Trash2,
   UserRound,
 } from 'lucide-react'
 import { useRef, useState } from 'react'
+import { formatCurrency, parseCurrencyInput } from '../../../utils/formatCurrency'
 import '../styles.css'
 import './styles.css'
 
@@ -26,10 +28,30 @@ function formatLoginDate(value) {
   })
 }
 
-function ConfiguracoesPerfil({ onBack, session }) {
+function formatSalaryInput(value) {
+  const numericValue = Number(value) || 0
+
+  if (numericValue <= 0) {
+    return ''
+  }
+
+  return numericValue.toLocaleString('pt-BR', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })
+}
+
+function ConfiguracoesPerfil({
+  monthlySalary = 0,
+  onBack,
+  onUpdateMonthlySalary,
+  session,
+}) {
   const fileInputRef = useRef(null)
   const [photo, setPhoto] = useState(() => localStorage.getItem(PROFILE_PHOTO_KEY) || '')
-  const username = session?.username || 'luis.bueno'
+  const [salaryInput, setSalaryInput] = useState(() => formatSalaryInput(monthlySalary))
+  const [salaryFeedback, setSalaryFeedback] = useState('')
+  const [isEditingSalary, setIsEditingSalary] = useState(false)
   const displayName = 'Luis'
 
   function handleSelectPhoto(event) {
@@ -53,6 +75,28 @@ function ConfiguracoesPerfil({ onBack, session }) {
   function handleRemovePhoto() {
     setPhoto('')
     localStorage.removeItem(PROFILE_PHOTO_KEY)
+  }
+
+  function handleStartSalaryEdit() {
+    setSalaryInput(formatSalaryInput(monthlySalary))
+    setSalaryFeedback('')
+    setIsEditingSalary(true)
+  }
+
+  function handleSaveSalary(event) {
+    event.preventDefault()
+
+    const nextSalary = salaryInput.trim() ? parseCurrencyInput(salaryInput) : 0
+
+    if (!Number.isFinite(nextSalary) || nextSalary < 0) {
+      setSalaryFeedback('Informe um salário válido.')
+      return
+    }
+
+    onUpdateMonthlySalary(nextSalary)
+    setSalaryInput(formatSalaryInput(nextSalary))
+    setSalaryFeedback(nextSalary > 0 ? 'Salário salvo.' : 'Salário removido.')
+    setIsEditingSalary(false)
   }
 
   return (
@@ -81,27 +125,17 @@ function ConfiguracoesPerfil({ onBack, session }) {
           </button>
 
           <div className="perfil-config__identity">
-            <span>Conta local</span>
             <strong>{displayName}</strong>
-            <small>{username}</small>
           </div>
 
-          <div className="perfil-config__actions">
-            <button
-              className="button button--primary"
-              type="button"
-              onClick={() => fileInputRef.current?.click()}
-            >
-              <ImagePlus size={18} aria-hidden="true" />
-              Alterar foto
-            </button>
-            {photo ? (
+          {photo ? (
+            <div className="perfil-config__actions">
               <button className="button button--ghost" type="button" onClick={handleRemovePhoto}>
                 <Trash2 size={18} aria-hidden="true" />
                 Remover
               </button>
-            ) : null}
-          </div>
+            </div>
+          ) : null}
         </div>
 
         <div className="perfil-config__summary">
@@ -128,6 +162,56 @@ function ConfiguracoesPerfil({ onBack, session }) {
               <strong>Neste navegador</strong>
             </div>
           </article>
+
+          <form className="perfil-config__salary-card" onSubmit={handleSaveSalary}>
+            <div className="perfil-config__salary-heading">
+              <div className="perfil-config__salary-title">
+                <CircleDollarSign size={22} aria-hidden="true" />
+                <div>
+                  <span>Salário mensal</span>
+                  <strong>{formatCurrency(monthlySalary)}</strong>
+                </div>
+              </div>
+
+              {!isEditingSalary ? (
+                <button
+                  className="icon-button perfil-config__salary-edit"
+                  type="button"
+                  title="Editar salário"
+                  aria-label="Editar salário"
+                  onClick={handleStartSalaryEdit}
+                >
+                  <Pencil size={17} aria-hidden="true" />
+                </button>
+              ) : null}
+            </div>
+
+            {isEditingSalary ? (
+              <>
+                <label>
+                  <span>Valor do salário</span>
+                  <input
+                    type="text"
+                    inputMode="decimal"
+                    value={salaryInput}
+                    onChange={(event) => {
+                      setSalaryInput(event.target.value)
+                      setSalaryFeedback('')
+                    }}
+                    placeholder="Ex.: 3500,00"
+                  />
+                </label>
+
+                <button className="button button--primary" type="submit">
+                  Salvar salário
+                </button>
+
+                {salaryFeedback ? (
+                  <small className="perfil-config__salary-feedback">{salaryFeedback}</small>
+                ) : null}
+              </>
+            ) : null}
+          </form>
         </div>
 
         <input
@@ -137,26 +221,6 @@ function ConfiguracoesPerfil({ onBack, session }) {
           accept="image/*"
           onChange={handleSelectPhoto}
         />
-      </section>
-
-      <section className="configuracoes__section">
-        <div className="section-heading">
-          <div>
-            <span>Resumo</span>
-            <h2>Como este perfil funciona</h2>
-          </div>
-        </div>
-
-        <div className="configuracoes__conteudo">
-          <p>
-            Este perfil não depende de servidor. Ele identifica a sessão local e
-            guarda a foto apenas no navegador deste dispositivo.
-          </p>
-          <p>
-            Ao sair do sistema, apenas a sessão é removida. Seus gastos,
-            categorias e backups continuam salvos localmente.
-          </p>
-        </div>
       </section>
     </section>
   )

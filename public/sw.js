@@ -1,10 +1,9 @@
-const CACHE_NAME = 'controle-gastos-pwa-v3'
+const CACHE_NAME = 'controle-gastos-pwa-v4'
 const APP_SHELL_URLS = [
   '/',
   '/index.html',
   '/manifest.webmanifest',
   '/favicon.svg',
-  '/fundo.png',
   '/logo.svg',
   '/icons.svg',
   '/icon-192.png',
