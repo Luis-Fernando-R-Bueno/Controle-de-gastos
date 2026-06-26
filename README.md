@@ -4,6 +4,12 @@
   <strong>Uma aplicação desenvolvida para transformar uma necessidade pessoal em uma solução de software.</strong>
 </p>
 
+<p align="center">
+  <a href="COLE_AQUI_O_LINK_DA_VERCEL">
+    <img src="https://img.shields.io/badge/🚀%20Acessar%20Aplicação-9f1d2f?style=for-the-badge&logo=vercel&logoColor=white" alt="Aplicação Online">
+  </a>
+</p>
+
 ---
 
 ## 📖 A história por trás do projeto
@@ -16,11 +22,9 @@ Mais do que registrar receitas e despesas, o objetivo era criar uma aplicação 
 
 ## ✨ Funcionalidades
 
-```
-
-* 📅 Cadastro de gastos
+* 📅 Cadastro de receitas e despesas
 * ✏️ Edição e exclusão de lançamentos
-* 🏷️ Gerenciamento de categorias
+* 🏷️ Categorias personalizadas
 * 🔍 Pesquisa dinâmica
 * 📊 Dashboard financeiro
 * 📆 Resumo mensal
@@ -29,40 +33,37 @@ Mais do que registrar receitas e despesas, o objetivo era criar uma aplicação 
 
 ---
 
-## 🖥️ Demonstração
+## 🖼️ Demonstração
 
-> *(Adicione aqui algumas imagens ou um GIF do sistema.)*
-
-```
-assets/
-├── dashboard.png
-├── cadastro.png
-└── historico.png
-```
-
----
-
-## 🛠️ Tecnologias
+> **Adicione aqui screenshots ou um GIF da aplicação.**
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=react,vite,javascript,css,git,github,vscode"/>
+  <img src="./assets/dashboard.png" width="90%" alt="Dashboard">
 </p>
 
 ---
 
-## 🚀 Como executar
+## 🛠️ Tecnologias utilizadas
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=react,vite,javascript,css,git,github,vscode" />
+</p>
+
+---
+
+## 🚀 Como executar o projeto
 
 ```bash
-# Clonar o repositório
+# Clone o repositório
 git clone https://github.com/Luis-Fernando-R-Bueno/Controle-de-gastos.git
 
-# Entrar na pasta
+# Acesse a pasta do projeto
 cd Controle-de-gastos
 
-# Instalar dependências
+# Instale as dependências
 npm install
 
-# Executar
+# Execute a aplicação
 npm run dev
 ```
 
@@ -72,27 +73,29 @@ npm run dev
 
 ```text
 src/
+├── assets/
 ├── componentes/
-├── telas/
-├── servicos/
 ├── hooks/
-├── utils/
-└── assets/
+├── servicos/
+├── telas/
+└── utils/
 ```
 
 ---
 
-## 🔮 Próximas funcionalidades
+## 🌱 Próximas funcionalidades
 
-* Autenticação de usuários
-* API em Node.js
-* Banco de dados PostgreSQL
-* Relatórios exportáveis
-* Gráficos financeiros
-* Sincronização em nuvem
+* 🔐 Sistema de autenticação
+* ☁️ Sincronização em nuvem
+* 🗄️ Integração com banco de dados
+* 📈 Gráficos financeiros
+* 📄 Exportação de relatórios
+* 👥 Controle para múltiplos usuários
 
 ---
 
-## 📄 Licença
+## 👨‍💻 Autor
 
-Este projeto foi desenvolvido para fins de estudo e evolução pessoal.
+Desenvolvido por **Luis Fernando Rodrigues Bueno**.
+
+Se este projeto foi útil ou interessante para você, deixe uma ⭐ no repositório.
