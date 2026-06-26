@@ -23,7 +23,8 @@ body {
   min-height: 100svh;
   margin: 0;
   background:
-    radial-gradient(circle at top, var(--color-bg-secondary), transparent 46%),
+    radial-gradient(circle at top left, var(--color-bg-secondary), transparent 34%),
+    linear-gradient(180deg, var(--color-bg-primary), var(--color-card-bg) 100%),
     var(--color-bg-primary);
   background-attachment: fixed;
   background-color: var(--bg);
@@ -123,7 +124,7 @@ a {
 .button--primary {
   border-color: var(--color-accent-border);
   background: var(--accent);
-  color: var(--color-bg-primary);
+  color: var(--color-on-accent);
   box-shadow: var(--shadow-soft);
 }
 

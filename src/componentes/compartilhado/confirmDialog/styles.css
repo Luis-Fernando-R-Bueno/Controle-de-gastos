@@ -66,7 +66,7 @@
 .confirm-dialog__confirm {
   border-color: var(--danger);
   background: var(--danger);
-  color: var(--color-bg-primary);
+  color: var(--color-on-accent);
 }
 
 .confirm-dialog__confirm:hover {

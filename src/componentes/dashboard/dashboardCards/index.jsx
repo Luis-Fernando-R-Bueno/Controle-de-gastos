@@ -3,8 +3,6 @@ import { formatCurrency } from '../../../utils/formatCurrency'
 import './styles.css'
 
 function DashboardCards({ dashboard }) {
-  const hasMonthlySalary = dashboard.monthlySalary > 0
-
   const cards = [
     {
       id: 'total',
@@ -16,15 +14,11 @@ function DashboardCards({ dashboard }) {
     },
     {
       id: 'count',
-      label: hasMonthlySalary ? 'Sobra do salário' : 'Lançamentos',
-      value: hasMonthlySalary
-        ? formatCurrency(dashboard.salaryRemaining)
-        : dashboard.countMonth,
-      detail: hasMonthlySalary
-        ? `${dashboard.countMonth} lançamentos no mês`
-        : 'Gastos cadastrados no mês',
+      label: 'Sobra do salário',
+      value: formatCurrency(dashboard.salaryRemaining),
+      detail: 'Salário menos gastos do mês',
       Icon: ReceiptText,
-      tone: hasMonthlySalary && dashboard.salaryRemaining < 0 ? 'danger' : 'green',
+      tone: dashboard.salaryRemaining < 0 ? 'danger' : 'green',
     },
     {
       id: 'top',

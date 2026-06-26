@@ -716,6 +716,38 @@ Validações executadas:
 - `npm.cmd run lint`
 - `npm.cmd run build`
 
+## Ajuste do Rodapé e Card de Salário - 26/06/2026
+
+Alterações realizadas:
+
+- Número de telefone removido do rodapé.
+- Card de `Lançamentos` no painel substituído definitivamente por
+  `Sobra do salário`.
+- O cálculo exibido passa a ser sempre `salário mensal - total gasto do mês`,
+  mesmo quando nenhum salário foi informado.
+- Texto auxiliar do card alterado para `Salário menos gastos do mês`.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Retorno ao Tema Claro - 26/06/2026
+
+Alterações realizadas:
+
+- Paleta central de `src/styles/tokens.css` voltou para base clara.
+- Fundo geral passou a usar gradiente claro e discreto.
+- Cards, inputs, header, login e painéis permanecem usando variáveis do Design
+  System, mas com superfícies brancas e texto escuro.
+- Botões primários e confirmações passaram a usar `--color-on-accent` para
+  manter contraste correto no tema claro.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
 ## Rotas por Tela no App - 25/06/2026
 
 Alterações realizadas:

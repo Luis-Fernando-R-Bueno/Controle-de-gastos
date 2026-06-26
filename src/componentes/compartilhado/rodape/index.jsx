@@ -1,4 +1,4 @@
-import { AtSign, Link, Mail, Phone } from 'lucide-react'
+import { AtSign, Link, Mail } from 'lucide-react'
 import './styles.css'
 
 function Rodape() {
@@ -8,10 +8,6 @@ function Rodape() {
         <a href="https://instagram.com/luisnanddo" target="_blank" rel="noreferrer">
           <AtSign size={17} aria-hidden="true" />
           @luisnanddo
-        </a>
-        <a href="tel:+5514998295951">
-          <Phone size={17} aria-hidden="true" />
-          (14) 99829-5951
         </a>
         <a href="mailto:77luisnando@gmail.com">
           <Mail size={17} aria-hidden="true" />
