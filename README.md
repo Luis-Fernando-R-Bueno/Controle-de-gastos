@@ -1,4 +1,3 @@
-```md id="3gwh3u"
 # 💰 Controle de Gastos
 
 <p align="center">
@@ -17,7 +16,6 @@ Mais do que registrar receitas e despesas, o objetivo era criar uma aplicação 
 
 ## ✨ Funcionalidades
 
-...
 ```
 
 * 📅 Cadastro de gastos
