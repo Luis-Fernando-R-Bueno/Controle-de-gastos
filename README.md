@@ -1,5 +1,4 @@
-﻿<p align="center">
-  ## Liora
+ ## Liora
 
 <p align="center">
   <strong>Clareza para suas finanças.</strong><br />
