@@ -5,8 +5,11 @@
 </p>
 
 <p align="center">
-  <a href="https://controle-de-gastos-phi-dun.vercel.app">
-    <img src="https://img.shields.io/badge/Acessar%20Liora-C97B18?style=for-the-badge&logo=vercel&logoColor=white" alt="Aplicação Online">
+  <a
+    href="https://controle-de-gastos-phi-dun.vercel.app"
+    style="display:inline-flex; align-items:center; justify-content:center; min-width:220px; padding:12px 20px; border-radius:999px; border:1px solid #ddd8cf; background:#f4f2ec; color:#1f2937; font-weight:700; text-decoration:none; box-shadow:0 10px 30px rgba(0,0,0,0.06);"
+  >
+    Acessar Liora
   </a>
 </p>
 

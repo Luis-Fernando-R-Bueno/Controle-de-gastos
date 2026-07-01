@@ -298,6 +298,22 @@ Validações executadas:
 - `npm.cmd run lint`
 - `npm.cmd run build`
 
+## Atualização do Painel para Layout 2x2 - 01/07/2026
+
+Alterações realizadas:
+
+- O painel mensal agora apresenta os cards em uma grade 2x2 em vez de 4 em
+  linha única.
+- Cada card foi refinado para ter proporção mais retangular e melhor uso do
+  espaço interno.
+- Valores numéricos nos cards agora mantêm uma linha única para evitar
+  quebra abrupta e melhorar a leitura dos dados.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
 ## Correção de Largura da Tela de Gastos - 23/06/2026
 
 Alterações realizadas:
@@ -321,6 +337,23 @@ Alterações realizadas:
 - Distância entre ícone e mensagem permanece reduzida.
 
 Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
+
+## Atualização da Tela de Perfil - 01/07/2026
+
+Alterações realizadas:
+
+- Reorganizados os campos de perfil para exibir nome, telefone e email antes
+  do bloco de salário.
+- Mantido o salário como o último item da área de perfil.
+- Ajustado o ícone de perfil para ficar centralizado dentro do círculo de foto.
+
+Validações executadas:
+
+- `npm.cmd run lint`
+- `npm.cmd run build`
 
 - `npm.cmd run lint`
 - `npm.cmd run build`

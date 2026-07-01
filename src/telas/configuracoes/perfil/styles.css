@@ -148,6 +148,11 @@
   background: var(--color-accent-soft);
   color: var(--color-accent-strong);
   cursor: pointer;
+  line-height: 0;
+}
+
+.perfil-config__photo svg {
+  display: block;
 }
 
 .perfil-config__photo img {

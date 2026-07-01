@@ -1,10 +1,9 @@
 import {
   ArrowLeft,
-  CalendarClock,
-  Database,
   LineChart,
+  Mail,
   Pencil,
-  ShieldCheck,
+  Phone,
   Trash2,
   UserRound,
 } from 'lucide-react'
@@ -14,19 +13,6 @@ import '../styles.css'
 import './styles.css'
 
 const PROFILE_PHOTO_KEY = 'controle-gastos:perfil-foto'
-
-function formatLoginDate(value) {
-  if (!value) return 'Não informado'
-
-  const date = new Date(value)
-
-  if (Number.isNaN(date.getTime())) return 'Não informado'
-
-  return date.toLocaleString('pt-BR', {
-    dateStyle: 'short',
-    timeStyle: 'short',
-  })
-}
 
 function formatSalaryInput(value) {
   const numericValue = Number(value) || 0
@@ -140,26 +126,26 @@ function ConfiguracoesPerfil({
 
         <div className="perfil-config__summary">
           <article className="perfil-config__metric">
-            <ShieldCheck size={22} aria-hidden="true" />
+            <UserRound size={22} aria-hidden="true" />
             <div>
-              <span>Acesso</span>
-              <strong>Local</strong>
+              <span>Nome</span>
+              <strong>{displayName}</strong>
             </div>
           </article>
 
           <article className="perfil-config__metric">
-            <CalendarClock size={22} aria-hidden="true" />
+            <Phone size={22} aria-hidden="true" />
             <div>
-              <span>Último login</span>
-              <strong>{formatLoginDate(session?.loggedAt)}</strong>
+              <span>Telefone</span>
+              <strong>Não informado</strong>
             </div>
           </article>
 
           <article className="perfil-config__metric">
-            <Database size={22} aria-hidden="true" />
+            <Mail size={22} aria-hidden="true" />
             <div>
-              <span>Dados</span>
-              <strong>Neste navegador</strong>
+              <span>Email</span>
+              <strong>Não informado</strong>
             </div>
           </article>
 
