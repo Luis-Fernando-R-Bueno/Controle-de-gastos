@@ -39,7 +39,6 @@ function Login({ onLogin }) {
         <div className="login-card__header">
           <img className="login-card__icon" src="/logo.svg" alt="" aria-hidden="true" />
           <div>
-            <span>Controle local</span>
             <h1>Acessar gastos</h1>
           </div>
         </div>
